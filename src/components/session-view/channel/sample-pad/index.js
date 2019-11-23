@@ -21,14 +21,16 @@ function Channel(props) {
       if (error) {
         setError(true);
       } else {
-        console.log('fx', fx);
-        loadSound.removeEffect(fx);
-        setSample(loadSound);
+        if (props.effects && props.effects.length) {
+          handleEffects(loadSound)
+        } else {
+            setSample(loadSound);
+        }
       }
     });
   }, [props]);
 
-  const handleEffects = () => {
+  const handleEffects = (loadSound) => {
     var i;
     for (i = 0; i < props.effects.length; i++) {
       const effect = props.effects[i];
@@ -37,26 +39,23 @@ function Channel(props) {
       for (let key in effect.properties) {
         if (effect.properties.hasOwnProperty(key)) {
           if (key !== '_unique') {
-            propertyArray[key] = effect.properties[key];
+            propertyArray[key] = (effect.properties[key] / 10);
           }
         }
       }
-      // console.log('propertyArray', propertyArray);
-      // console.log('effect', effect);
-      console.log('sample', sample);
       var delay = new Pizzicato.Effects.Delay(propertyArray);
-      sample.addEffect(delay);
-      // setFx(delay);
+      loadSound.removeEffect(delay);
+      loadSound.addEffect(delay);
+      setSample(loadSound);
     }
   };
 
-  const handleClick = a => {
+  const handleClick = () => {
     sample.stop();
     sample.play();
   };
 
   if (sample) {
-    if (props.effects && props.effects.length) handleEffects();
 
     return (
       <div className="col-24  pa1  session-view__channel__pad">
