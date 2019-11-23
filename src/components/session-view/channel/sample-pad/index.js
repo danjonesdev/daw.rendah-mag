@@ -36,9 +36,9 @@ function Channel(props) {
 
   if (sample) {
     return (
-      <div className="col-24  sample-pad-wrapper">
+      <div className="col-24  pa1  session-view__channel__pad">
         <div
-          className="flex  flex-wrap  sample-pad"
+          className="flex  flex-wrap  pa2"
           onClick={() => {
             handleClick(sample);
           }}

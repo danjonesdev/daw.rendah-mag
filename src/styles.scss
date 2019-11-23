@@ -6,65 +6,11 @@
 @import './styles/vars';
 @import './styles/utilities';
 
+@import './styles/modules/session-view';
+@import './styles/modules/track-bar';
+
 html, body {margin: 0; height: 100%; overflow: hidden}
 
-// session-view
-.session-view {
-  border: 1px solid black;
-
-  .channel {
-    padding: 3px;
-
-    .sample-pad-wrapper {
-      padding: 3px;
-
-      .sample-pad {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid black;
-      }
-    }
-  }
-}
-
-// track-bar
-
-.track-bar {
-    padding: 3px;
-
-  .channel-manager-wrapper {
-    padding: 3px;
-
-    .channel-manager-trigger {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid black;
-      background: black;
-      color: white;
-    }
-
-    .track-manager-modal {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background-color: grey;
-      color: white;
-      display: none;
-      opacity: 0;
-
-      .track-manager-modal__row {
-        padding: 10px;
-      }
-    }
-
-    .track-manager-modal.is-active {
-      display: block;
-      opacity: 1;
-    }
-  }
-}
 
 
 // utilities

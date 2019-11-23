@@ -1,6 +1,8 @@
 import React from "react";
 import Store from "../../../../store";
 
+import Row from "./row";
+
 function Modal(props) {
   const store = Store.useStore();
   const settings = store.get("settings");
@@ -14,17 +16,13 @@ function Modal(props) {
       <div className="w-100  flex  flex-wrap">
         {settings.channels.map(channel => {
           return (
-            <div>
+            <>
               {channel.samples.map(sample => {
                 if (channel.name === props.name) {
-                  return (
-                    <div class="col-24  track-manager-modal__row">
-                      {sample.name}
-                    </div>
-                  );
+                  return <Row channel={channel} sample={sample} />;
                 }
               })}
-            </div>
+            </>
           );
         })}
       </div>

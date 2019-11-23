@@ -7,7 +7,7 @@ function SessionView() {
   const settings = store.get("settings");
 
   return (
-    <div className="w-100  flex  flex-wrap  session-view">
+    <div className="w-100  flex  flex-wrap  pa1  session-view">
       {settings.channels.map(item => {
         return <Channel {...item} />;
       })}

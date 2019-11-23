@@ -7,7 +7,7 @@ function SessionView() {
   const settings = store.get("settings");
 
   return (
-    <div className="w-100  flex  flex-wrap  track-bar">
+    <div className="w-100  flex  flex-wrap  pa1  track-bar">
       {settings.channels.map(item => {
         return <ChannelManager {...item} />;
       })}

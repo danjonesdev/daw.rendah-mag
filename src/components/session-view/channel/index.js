@@ -3,7 +3,7 @@ import SamplePad from "./sample-pad";
 
 function Channel(props) {
   return (
-    <div className="col-6  channel">
+    <div className="col-6  pa1  session-view__channel">
       <div className="flex  flex-wrap">
         {props.samples.map(item => {
           if (item.active) {

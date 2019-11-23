@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "lodash": "4.17.15",
     "node-sass": "4.13.0",
     "pizzicato": "0.6.4",
     "react": "16.8.6",

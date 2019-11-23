@@ -10,15 +10,17 @@ function ChannelManager(props) {
   };
 
   return (
-    <div className="col-6  channel-manager-wrapper">
+    <div className="col-6  pa1  track-bar__item">
       <div
-        className="flex  flex-wrap  channel-manager-trigger"
+        className="flex  flex-wrap  track-bar__item__modal-trigger"
         onClick={toggleModal}
       >
         {props.name}
       </div>
 
-      <div className={`track-manager-modal  ${modalActive ? "is-active" : ""}`}>
+      <div
+        className={`track-bar__item__modal  ${modalActive ? "is-active" : ""}`}
+      >
         <Modal {...props} toggleModal={toggleModal} />
       </div>
     </div>

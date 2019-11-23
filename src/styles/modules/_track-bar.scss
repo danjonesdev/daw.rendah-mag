@@ -1,0 +1,37 @@
+.track-bar {
+  //
+}
+
+.track-bar__item {
+  //
+}
+
+
+.track-bar__item__modal-trigger {
+  border-radius: 5px;
+  border: 1px solid black;
+  background: black;
+  color: white;
+}
+
+.track-bar__item__modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-color: grey;
+  color: white;
+  display: none;
+  opacity: 0;
+}
+
+.track-bar__item__modal__row {
+  @extend .ba;
+  @extend .bc-black;
+}
+
+.track-bar__item__modal.is-active {
+  display: block;
+  opacity: 1;
+}
