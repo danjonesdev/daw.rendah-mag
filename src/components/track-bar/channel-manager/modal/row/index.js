@@ -1,56 +1,22 @@
-import React from "react";
-import reverse from "lodash/reverse";
-import isEqual from "lodash/isEqual";
+import React from 'react';
+import Store from '../../../../../store';
 
-import Store from "../../../../../store";
+import Effects from './effetcs';
+
+import mutateObject from '../../../../../helpers/mutate-object';
 
 function Row(props) {
   const store = Store.useStore();
-  let settings;
-
-  const mutateObject = (object, property, value) => {
-    settings = store.get("settings");
-    const gObj = object;
-
-    function findByName(o, findValue) {
-      if (o[`${property}`] === findValue) {
-        if (isEqual(gObj, o)) {
-          return o;
-        }
-      }
-
-      var result, p;
-      for (p in o) {
-        if (o.hasOwnProperty(p) && typeof o[p] === "object") {
-          result = findByName(o[p], findValue);
-          if (result) {
-            indexMap.push(p);
-            return result;
-          }
-        }
-      }
-      return result;
-    }
-
-    function deleteKey(object, keys) {
-      var last = keys.pop();
-      matchedObject = keys.reduce((o, k) => o[k], object)[last];
-      if (isEqual(gObj, matchedObject)) {
-        matchedObject[property] = value;
-        return object;
-      }
-    }
-
-    let matchedObject;
-    let indexMap = [];
-    findByName(settings, gObj[property]);
-    const keys = reverse(indexMap);
-    const mutatedStore = deleteKey(settings, keys);
-    store.set("settings")(mutatedStore);
-  };
 
   const toggleActive = () => {
-    mutateObject(props.channel, "name", !props.sample.active);
+    store.set('settings')(
+      mutateObject(
+        store.get('settings'),
+        props.sample,
+        'active',
+        !props.sample.active
+      )
+    );
   };
 
   return (
@@ -64,7 +30,11 @@ function Row(props) {
           onChange={toggleActive}
         />
       </div>
-      <div className="col-10">{props.sample.name}</div>
+      <div className="col-10  flex  flex-wrap">
+        {props.sample.effects && props.sample.effects.map(effect => {
+          return <Effects channel={props.channel} sample={props.sample} effect={effect} />;
+        })}
+      </div>
     </div>
   );
 }
