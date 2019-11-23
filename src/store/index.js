@@ -33,12 +33,13 @@ export default createConnectedStore({
             effects: [
               {
                 _unique: 236472,
-                name: 'delay',
+                name: 'Delay',
                 test: 1,
                 properties: {
-                  feedback: 0.8,
-                  time: 0.22,
-                  mix: 0.75
+                  _unique: 236472,
+                  feedback: 0,
+                  time: 0,
+                  mix: 0
                 }
               }
             ]
@@ -51,9 +52,10 @@ export default createConnectedStore({
             effects: [
               {
                 _unique: 8564,
-                name: 'delay',
+                name: 'Delay',
                 test: 1,
                 properties: {
+                  _unique: 236472,
                   feedback: 0.8,
                   time: 0.22,
                   mix: 0.75

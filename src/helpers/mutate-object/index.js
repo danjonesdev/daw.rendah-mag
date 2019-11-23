@@ -31,8 +31,8 @@ const mutateObject = (origin, object, property, value) => {
     const last = keys.pop();
     foundObject = keys.reduce((o, k) => o[k], object)[last];
     
-    // console.log('gObj', gObj);
-    // console.log('foundObject', foundObject);
+    console.log('gObj', gObj);
+    console.log('foundObject', foundObject);
 
     if (isEqual(gObj, foundObject)) {
       foundObject[property] = value;

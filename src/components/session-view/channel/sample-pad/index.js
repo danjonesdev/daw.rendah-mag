@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // import { soundManager } from "soundmanager2";
-import Pizzicato from "pizzicato";
+import Pizzicato from 'pizzicato';
 
 // soundManager.setup({
 //   // where to find flash audio SWFs, as needed
@@ -13,6 +13,7 @@ import Pizzicato from "pizzicato";
 
 function Channel(props) {
   const [sample, setSample] = useState(null);
+  const [fx, setFx] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -20,29 +21,46 @@ function Channel(props) {
       if (error) {
         setError(true);
       } else {
+        console.log('fx', fx);
+        loadSound.removeEffect(fx);
         setSample(loadSound);
       }
     });
-  }, []);
+  }, [props]);
 
-  const handleClick = a => {
-    a.stop();
-    a.play();
-    // var delay = new Pizzicato.Effects.Delay();
-    // a.addEffect(delay);
+  const handleEffects = () => {
+    var i;
+    for (i = 0; i < props.effects.length; i++) {
+      const effect = props.effects[i];
+      const propertyArray = {};
+
+      for (let key in effect.properties) {
+        if (effect.properties.hasOwnProperty(key)) {
+          if (key !== '_unique') {
+            propertyArray[key] = effect.properties[key];
+          }
+        }
+      }
+      // console.log('propertyArray', propertyArray);
+      // console.log('effect', effect);
+      console.log('sample', sample);
+      var delay = new Pizzicato.Effects.Delay(propertyArray);
+      sample.addEffect(delay);
+      // setFx(delay);
+    }
   };
 
-  console.log("render");
+  const handleClick = a => {
+    sample.stop();
+    sample.play();
+  };
 
   if (sample) {
+    if (props.effects && props.effects.length) handleEffects();
+
     return (
       <div className="col-24  pa1  session-view__channel__pad">
-        <div
-          className="flex  flex-wrap  pa2"
-          onClick={() => {
-            handleClick(sample);
-          }}
-        >
+        <div className="flex  flex-wrap  pa2" onClick={handleClick}>
           sample {props.name}
         </div>
       </div>
