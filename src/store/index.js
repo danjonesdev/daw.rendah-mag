@@ -18,6 +18,7 @@ const randomKey = () => {
 // Create a store with an initial value.
 export default createConnectedStore({
   settings: {
+    _key: randomKey(),
     bpm: 128,
     channels: [
       {
@@ -42,6 +43,16 @@ export default createConnectedStore({
                   mix: 0
                 }
               }
+            ],
+            loopInstances: [
+              {
+                _key: randomKey(),
+                time: 2000,
+              },
+              {
+                _key: randomKey(),
+                time: 4000,
+              }
             ]
           },
           {
@@ -65,28 +76,33 @@ export default createConnectedStore({
           }
         ]
       },
-      {
-        _key: randomKey(),
-        name: 'snares',
-        color: '#000000',
-        samples: [
-          {
-            _key: randomKey(),
-            name: 'snare-1',
-            active: true,
-            file: 'https://alemangui.github.io/pizzicato/audio/wah.mp3'
-          },
-          {
-            _key: randomKey(),
-            name: 'snare-2',
-            active: false,
-            file: 'snare-2.wav'
-          }
-        ]
-      }
+      // {
+      //   _key: randomKey(),
+      //   name: 'snares',
+      //   color: '#000000',
+      //   samples: [
+      //     {
+      //       _key: randomKey(),
+      //       name: 'snare-1',
+      //       active: true,
+      //       file: 'https://alemangui.github.io/pizzicato/audio/wah.mp3'
+      //     },
+      //     {
+      //       _key: randomKey(),
+      //       name: 'snare-2',
+      //       active: false,
+      //       file: 'snare-2.wav'
+      //     }
+      //   ]
+      // }
     ]
   },
+  cueLoop: {
+    _key: randomKey(),
+    isLooping: false,
+  },
   functions: {
+    _key: randomKey(),
     mutateObject: mutateObject
   }
 });

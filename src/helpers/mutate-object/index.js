@@ -30,9 +30,9 @@ const mutateObject = (origin, object, property, value) => {
   function isObejctMatch(object, keys) {
     const last = keys.pop();
     foundObject = keys.reduce((o, k) => o[k], object)[last];
-    
-    console.log('gObj', gObj);
-    console.log('foundObject', foundObject);
+
+    // console.log('gObj', gObj);
+    // console.log('foundObject', foundObject);
 
     if (isEqual(gObj, foundObject)) {
       foundObject[property] = value;
@@ -41,7 +41,7 @@ const mutateObject = (origin, object, property, value) => {
   }
 
   findByProperty(origin, gObj[property]);
-  
+
   const keys = reverse(indexMap);
   const mutatedSource = isObejctMatch(origin, keys);
 

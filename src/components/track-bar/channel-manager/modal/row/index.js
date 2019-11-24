@@ -20,7 +20,7 @@ function Row(props) {
   };
 
   return (
-    <div class="col-24  flex  flex-wrap  pa2  track-bar__item__modal__row">
+    <div class="col-24  flex  flex-wrap  track-bar__item__modal__row">
       <div className="col-10">{props.sample.name}</div>
       <div className="col-4">
         <input

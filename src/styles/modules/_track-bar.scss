@@ -1,5 +1,5 @@
 .track-bar {
-  //
+  height: 20vh;
 }
 
 .track-bar__item {
@@ -9,9 +9,11 @@
 
 .track-bar__item__modal-trigger {
   border-radius: 5px;
-  border: 1px solid black;
+  outline: 1px solid black;
   background: black;
   color: white;
+  height: 100%;
+  @extend .tac;
 }
 
 .track-bar__item__modal {
@@ -19,7 +21,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 200px;
+  height: 100vh;
   background-color: grey;
   color: white;
   display: none;
@@ -27,8 +29,11 @@
 }
 
 .track-bar__item__modal__row {
-  @extend .ba;
-  @extend .bc-black;
+  outline: 1px solid black;
+}
+
+.track-bar__item__modal__row > div {
+
 }
 
 .track-bar__item__modal.is-active {

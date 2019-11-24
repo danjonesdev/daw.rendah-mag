@@ -1,6 +1,7 @@
 import React from "react";
 import SessionView from "./session-view";
 import TrackBar from "./track-bar";
+import Settings from "./settings";
 
 function Components() {
   return (
@@ -13,7 +14,9 @@ function Components() {
           <TrackBar />
         </div>
       </div>
-      <div className="col-6">Settings go here.</div>
+      <div className="col-6">
+        <Settings /> 
+      </div>
     </div>
   );
 }

@@ -10,9 +10,9 @@ function ChannelManager(props) {
   };
 
   return (
-    <div className="col-6  pa1  track-bar__item">
+    <div className="col-6  track-bar__item">
       <div
-        className="flex  flex-wrap  track-bar__item__modal-trigger"
+        className="flex  flex-wrap  align-center  justify-center  track-bar__item__modal-trigger"
         onClick={toggleModal}
       >
         {props.name}
