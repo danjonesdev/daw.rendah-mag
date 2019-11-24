@@ -44,16 +44,11 @@ export default createConnectedStore({
                 }
               }
             ],
-            loopInstances: [
-              {
-                _key: randomKey(),
-                time: 2000,
-              },
-              {
-                _key: randomKey(),
-                time: 4000,
-              }
-            ]
+            loop: {
+              _key: randomKey(),
+              isActive: false,
+              instances: []
+            }
           },
           {
             _key: randomKey(),
@@ -100,6 +95,7 @@ export default createConnectedStore({
   cueLoop: {
     _key: randomKey(),
     isLooping: false,
+    loopTime: null,
   },
   functions: {
     _key: randomKey(),

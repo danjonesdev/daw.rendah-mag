@@ -46,7 +46,7 @@ const mutateObject = (origin, object, property, value) => {
   const mutatedSource = isObejctMatch(origin, keys);
 
   // console.log('keys', keys);
-  // console.log('mutatedSource', mutatedSource);
+  console.log('mutatedSource', mutatedSource);
 
   return mutatedSource;
 };

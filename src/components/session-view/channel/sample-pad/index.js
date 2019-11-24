@@ -3,6 +3,7 @@ import Pizzicato from 'pizzicato';
 import isEqual from 'lodash/isEqual';
 
 import Store from '../../../../store';
+import mutateObject from '../../../../helpers/mutate-object';
 
 const useCompare = (val: any) => {
     const prevVal = usePrevious(val)
@@ -19,14 +20,14 @@ const usePrevious = (value) => {
 
 function Channel(props) {
   const [inititalLoopFlag, setInititalLoopFlag] = useState(false);
-  let hasLoopsChanged = useCompare(props.loopInstances)
+  let hasLoopsChanged = useCompare(props.loop.instances)
 
   const [sample, setSample] = useState(null);
   const [error, setError] = useState(false);
 
   const store = Store.useStore();
   const cueLoop = store.get('cueLoop');
-
+  const settings = store.get('settings');
   // will only fire once on initial mount
   const useOnce = () => useEffect(() => {
     hasLoopsChanged = true;
@@ -40,6 +41,7 @@ function Channel(props) {
       if (error) {
         setError(true);
       } else {
+        console.log('render');
         setSample(loadSample);
       }
     });
@@ -68,34 +70,64 @@ function Channel(props) {
 
   const handleLooping = () => {
     if (hasLoopsChanged || inititalLoopFlag) {
+      console.log('handleLooping', props.loop);
 
-    for (let i = 0; i < props.loopInstances.length; i++) {
+      const executeOrder = () => {
+        for (let i = 0; i < props.loop.instances.length; i++) {
+          setTimeout(() => {
+            sample.stop();
+            sample.play();
+          }, props.loop.instances[i].time)
+        }
+      }
+
       setInterval(() => {
-        sample.stop();
-        // sample.play();
-      }, props.loopInstances[i].time)
-    }
+        executeOrder()
+      }, cueLoop.loopTime)
 
+    executeOrder();
     setInititalLoopFlag(false);
-
-  }
-
+    }
   }
 
   const handleClick = () => {
-    console.log('cueLoop', cueLoop);
     if (cueLoop.isLooping) {
-      //
+      // Set initial cue starting time
+      if (!cueLoop.loopTime) {
+        cueLoop.loopTime = performance.now();
+      }
+
+      props.loop.instances.push({
+        time: performance.now() - cueLoop.loopTime,
+      })
+
+      store.set('settings')(
+        mutateObject(
+          settings,
+          props.loop,
+          'instances',
+          props.loop.instances
+        )
+      );
+
+      store.set('cueLoop')(cueLoop);
     }
     // setInterval(() => {
-      sample.stop();
-      sample.play();
+
     // }, 1000)
+
+    console.log('sample', sample);
+    sample.stop();
+    sample.play();
+
   };
 
   if (sample) {
     if (props.effects && props.effects.length) handleEffects();
-    if (props.loopInstances && props.loopInstances.length) handleLooping();
+    // if (props.loopInstances && props.loopInstances.length) handleLooping();
+    if (!cueLoop.isLooping && cueLoop.loopTime) {
+      handleLooping();
+    }
 
     return (
       <div className="col-24  session-view__channel__pad">

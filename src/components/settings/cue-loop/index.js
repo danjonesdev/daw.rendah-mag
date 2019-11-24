@@ -5,15 +5,28 @@ import Store from '../../../store';
 import mutateObject from '../../../helpers/mutate-object';
 
 function CueLoop(props) {
-  const [modalActive, setModalActive] = useState(false);
+  const [isLooping, setIsLooping] = useState(false);
+  const [isLoopTimeDetermined, setIsLoopTimeDetermined] = useState(false);
 
   const store = Store.useStore();
   const cueLoop = store.get('cueLoop');
 
   const handleClick = () => {
-    cueLoop.isLooping = !cueLoop.isLooping
-    store.set('cueLoop')(cueLoop);
+    if (isLoopTimeDetermined) {
+      return;
+    }
 
+    setIsLooping(!isLooping);
+    cueLoop.isLooping = !cueLoop.isLooping
+
+    // if looping and no loop time
+    if (!cueLoop.isLooping) {
+      cueLoop.loopTime = (performance.now() - cueLoop.loopTime);
+      setIsLoopTimeDetermined(true)
+    }
+
+    store.set('cueLoop')(cueLoop);
+    console.log('cueLoop', cueLoop);
   };
 
   return (
