@@ -69,8 +69,10 @@ function Channel(props) {
   };
 
   const handleLooping = () => {
+    console.log('handleLooping');
     if (hasLoopsChanged || inititalLoopFlag) {
       console.log('handleLooping', props.loop);
+      console.log('cueLoop.loopTime', cueLoop.loopTime);
 
       const executeOrder = () => {
         for (let i = 0; i < props.loop.instances.length; i++) {
@@ -81,9 +83,10 @@ function Channel(props) {
         }
       }
 
+      const relativeLoopTime = cueLoop.loopTime;
       setInterval(() => {
         executeOrder()
-      }, cueLoop.loopTime)
+      }, relativeLoopTime)
 
     executeOrder();
     setInititalLoopFlag(false);
@@ -93,7 +96,7 @@ function Channel(props) {
   const handleClick = () => {
     if (cueLoop.isLooping) {
       // Set initial cue starting time
-      if (!cueLoop.loopTime) {
+      if (!props.loop.instances.length) {
         cueLoop.loopTime = performance.now();
       }
 
@@ -112,11 +115,8 @@ function Channel(props) {
 
       store.set('cueLoop')(cueLoop);
     }
-    // setInterval(() => {
 
-    // }, 1000)
-
-    console.log('sample', sample);
+    console.log('settings', settings);
     sample.stop();
     sample.play();
 
