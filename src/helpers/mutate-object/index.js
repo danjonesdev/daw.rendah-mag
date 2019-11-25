@@ -1,5 +1,5 @@
-import reverse from 'lodash/reverse';
-import isEqual from 'lodash/isEqual';
+import reverse from "lodash/reverse";
+import isEqual from "lodash/isEqual";
 
 const mutateObject = (origin, object, property, value) => {
   const gObj = object;
@@ -15,7 +15,7 @@ const mutateObject = (origin, object, property, value) => {
 
     let result, p;
     for (p in o) {
-      if (o.hasOwnProperty(p) && typeof o[p] === 'object') {
+      if (o.hasOwnProperty(p) && typeof o[p] === "object") {
         result = findByProperty(o[p], findValue);
 
         if (result) {
@@ -46,7 +46,7 @@ const mutateObject = (origin, object, property, value) => {
   const mutatedSource = isObejctMatch(origin, keys);
 
   // console.log('keys', keys);
-  console.log('mutatedSource', mutatedSource);
+  console.log("mutatedSource", mutatedSource);
 
   return mutatedSource;
 };

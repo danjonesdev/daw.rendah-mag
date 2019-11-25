@@ -52,8 +52,8 @@ function Effects(props) {
 
   return (
     <>
-    <div className="col-4">{props.effect.name}</div>
-    <div className="col-20">{loopPorps()}</div>
+      <div className="col-4">{props.effect.name}</div>
+      <div className="col-20">{loopPorps()}</div>
     </>
   );
 }

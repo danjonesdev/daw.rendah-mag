@@ -1,6 +1,6 @@
-import { createConnectedStore } from 'undux';
+import { createConnectedStore } from "undux";
 
-import mutateObject from '../helpers/mutate-object';
+import mutateObject from "../helpers/mutate-object";
 
 const keyArr = [];
 
@@ -23,18 +23,18 @@ export default createConnectedStore({
     channels: [
       {
         _key: randomKey(),
-        name: 'kicks',
-        color: '#000000',
+        name: "kicks",
+        color: "#000000",
         samples: [
           {
             _key: randomKey(),
-            name: 'kick-1',
+            name: "kick-1",
             active: true,
-            file: 'https://alemangui.github.io/pizzicato/audio/chop.mp3',
+            file: "https://alemangui.github.io/pizzicato/audio/chop.mp3",
             effects: [
               {
                 _unique: 236472,
-                name: 'Delay',
+                name: "Delay",
                 test: 1,
                 properties: {
                   _unique: 236472,
@@ -52,13 +52,13 @@ export default createConnectedStore({
           },
           {
             _key: randomKey(),
-            name: 'kick-2',
+            name: "kick-2",
             active: false,
-            file: 'kick-2.wav',
+            file: "kick-2.wav",
             effects: [
               {
                 _unique: 8564,
-                name: 'Delay',
+                name: "Delay",
                 test: 1,
                 properties: {
                   _unique: 236472,
@@ -73,38 +73,38 @@ export default createConnectedStore({
       },
       {
         _key: randomKey(),
-        name: 'snares',
-        color: '#000000',
+        name: "snares",
+        color: "#000000",
         samples: [
+          // {
+          //   _key: randomKey(),
+          //   name: 'snare-1',
+          //   active: true,
+          //   file: 'https://alemangui.github.io/pizzicato/audio/wah.mp3',
+          //   effects: [
+          //     {
+          //       _unique: 236472,
+          //       name: 'Delay',
+          //       test: 1,
+          //       properties: {
+          //         _unique: 236472,
+          //         feedback: 0,
+          //         time: 0,
+          //         mix: 0
+          //       }
+          //     }
+          //   ],
+          //   loop: {
+          //     _key: randomKey(),
+          //     isActive: false,
+          //     instances: []
+          //   }
+          // },
           {
             _key: randomKey(),
-            name: 'snare-1',
-            active: true,
-            file: 'https://alemangui.github.io/pizzicato/audio/wah.mp3',
-            effects: [
-              {
-                _unique: 236472,
-                name: 'Delay',
-                test: 1,
-                properties: {
-                  _unique: 236472,
-                  feedback: 0,
-                  time: 0,
-                  mix: 0
-                }
-              }
-            ],
-            loop: {
-              _key: randomKey(),
-              isActive: false,
-              instances: []
-            }
-          },
-          {
-            _key: randomKey(),
-            name: 'snare-2',
+            name: "snare-2",
             active: false,
-            file: 'snare-2.wav'
+            file: "snare-2.wav"
           }
         ]
       }
@@ -113,7 +113,7 @@ export default createConnectedStore({
   cueLoop: {
     _key: randomKey(),
     isLooping: false,
-    loopTime: null,
+    loopTime: null
   },
   functions: {
     _key: randomKey(),
