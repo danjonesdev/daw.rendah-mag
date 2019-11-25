@@ -110,6 +110,27 @@ export default createConnectedStore({
       // }
     ]
   },
+  loops: [
+    // {
+    //   _key: randomKey(),
+    //   name: 'kick-1',
+    //   active: true,
+    //   file: '',
+    //   effects: [
+    //     {
+    //       _unique: 236472,
+    //       name: 'delay',
+    //       test: 1,
+    //       properties: {
+    //         _unique: 236472,
+    //         delayTime: 0,
+    //         wet: 0,
+    //         feedback: 0
+    //       }
+    //     },
+    //   ],
+    // }
+  ],
   cueLoop: {
     _key: randomKey(),
     isLooping: false,

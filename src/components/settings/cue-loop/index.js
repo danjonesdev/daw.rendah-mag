@@ -10,20 +10,31 @@ function CueLoop(props) {
 
   const store = Store.useStore();
   const cueLoop = store.get('cueLoop');
+  const loops = store.get('loops');
 
   const handleClick = () => {
     setIsLooping(!isLooping);
     cueLoop.isLooping = !cueLoop.isLooping
 
-    // if looping and no loop time
-    // if (!cueLoop.isLooping  && !isLoopTimeDetermined) {
+    // if disabling loop, set loopCompleted on last object to true
     if (!cueLoop.isLooping) {
-      cueLoop.loopTime = (performance.now() - cueLoop.loopTime);
-      setIsLoopTimeDetermined(true)
+      console.log('loops[loops.length - 1]', loops[loops.length - 1]);
+      loops[loops.length - 1].endTime =  performance.now();
+      loops[loops.length - 1].duration =  (loops[loops.length - 1].endTime - loops[loops.length - 1].startTime);
+      loops[loops.length - 1].loopCompleted = true;
     }
 
+
+    // // if looping and no loop time
+    // // if (!cueLoop.isLooping  && !isLoopTimeDetermined) {
+    // if (!cueLoop.isLooping) {
+    //   cueLoop.loopTime = (performance.now() - cueLoop.loopTime);
+    //   setIsLoopTimeDetermined(true)
+    // }
+
     store.set('cueLoop')(cueLoop);
-    console.log('cueLoop', cueLoop);
+    // console.log('cueLoop', cueLoop);
+
   };
 
   return (
