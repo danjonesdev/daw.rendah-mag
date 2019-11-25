@@ -43,6 +43,8 @@ function Channel(props) {
       } else {
         console.log('render');
         setSample(loadSample);
+        loadSample.on('play', handlePlay);
+
       }
     });
   }, [props]);
@@ -94,6 +96,13 @@ function Channel(props) {
   }
 
   const handleClick = () => {
+
+    sample.stop();
+    sample.play();
+
+  };
+
+  const handlePlay = () => {
     if (cueLoop.isLooping) {
       // Set initial cue starting time
       if (!props.loop.instances.length) {
@@ -104,23 +113,20 @@ function Channel(props) {
         time: performance.now() - cueLoop.loopTime,
       })
 
-      store.set('settings')(
-        mutateObject(
-          settings,
-          props.loop,
-          'instances',
-          props.loop.instances
-        )
-      );
-
-      store.set('cueLoop')(cueLoop);
+      // store.set('settings')(
+      //   mutateObject(
+      //     settings,
+      //     props.loop,
+      //     'instances',
+      //     props.loop.instances
+      //   )
+      // );
+      //
+      // store.set('cueLoop')(cueLoop);
     }
 
     console.log('settings', settings);
-    sample.stop();
-    sample.play();
-
-  };
+  }
 
   if (sample) {
     if (props.effects && props.effects.length) handleEffects();
