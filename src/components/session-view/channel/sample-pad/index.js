@@ -2,27 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import Pizzicato from 'pizzicato';
 import isEqual from 'lodash/isEqual';
 
-import Sample from './sample';
-
 import Store from '../../../../store';
 import mutateObject from '../../../../helpers/mutate-object';
 
-const useCompare = val => {
-  const prevVal = usePrevious(val);
-  return !isEqual(prevVal, val);
-};
+const useCompare = (val: any) => {
+    const prevVal = usePrevious(val)
+    return !isEqual(prevVal, val)
+}
 
-const usePrevious = value => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
+const usePrevious = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+}
 
-function SamplePad(props) {
+function Channel(props) {
   const [inititalLoopFlag, setInititalLoopFlag] = useState(false);
-  let hasLoopsChanged = useCompare(props.loop.instances);
+  let hasLoopsChanged = useCompare(props.loop.instances)
 
   const [sample, setSample] = useState(null);
   const [error, setError] = useState(false);
@@ -31,26 +29,23 @@ function SamplePad(props) {
   const cueLoop = store.get('cueLoop');
   const settings = store.get('settings');
   // will only fire once on initial mount
-  const useOnce = () =>
-    useEffect(() => {
-      hasLoopsChanged = true;
-      setInititalLoopFlag(true);
-    }, []);
+  const useOnce = () => useEffect(() => {
+    hasLoopsChanged = true;
+    setInititalLoopFlag(true);
+  }, [])
 
   useOnce();
 
   useEffect(() => {
-    console.log('use');
-    if (!sample) {
-      const loadSample = new Pizzicato.Sound(props.file, function(error) {
-        if (error) {
-          setError(true);
-        } else {
-          setSample(loadSample);
-        }
-      });
-    }
-  }, []);
+    const loadSample = new Pizzicato.Sound(props.file, function(error) {
+      if (error) {
+        setError(true);
+      } else {
+        console.log('render');
+        setSample(loadSample);
+      }
+    });
+  }, [props]);
 
   const handleEffects = () => {
     var i;
@@ -61,7 +56,7 @@ function SamplePad(props) {
       for (let key in effect.properties) {
         if (effect.properties.hasOwnProperty(key)) {
           if (key !== '_unique') {
-            propertyArray[key] = effect.properties[key] / 10;
+            propertyArray[key] = (effect.properties[key] / 10);
           }
         }
       }
@@ -74,61 +69,70 @@ function SamplePad(props) {
   };
 
   const handleLooping = () => {
-    console.log('props.loop.instances', props.loop.instances);
+    console.log('handleLooping');
     if (hasLoopsChanged || inititalLoopFlag) {
-      console.log('handleLooping');
+      console.log('handleLooping', props.loop);
+      console.log('cueLoop.loopTime', cueLoop.loopTime);
 
-      const action = () => {
+      const executeOrder = () => {
         for (let i = 0; i < props.loop.instances.length; i++) {
           setTimeout(() => {
             sample.stop();
             sample.play();
-          }, props.loop.instances[i].time);
+          }, props.loop.instances[i].time)
         }
-      };
+      }
 
       const relativeLoopTime = cueLoop.loopTime;
       setInterval(() => {
-        action();
-      }, relativeLoopTime);
+        executeOrder()
+      }, relativeLoopTime)
 
-      action();
-      setInititalLoopFlag(false);
+    executeOrder();
+    setInititalLoopFlag(false);
     }
-  };
+  }
 
-  const handleCueing = () => {
-    console.log('props', props);
+  const handleClick = () => {
     if (cueLoop.isLooping) {
-      // console.log("checkCueing:add to store");
-
       // Set initial cue starting time
       if (!props.loop.instances.length) {
         cueLoop.loopTime = performance.now();
       }
 
       props.loop.instances.push({
-        time: performance.now() - cueLoop.loopTime
-      });
+        time: performance.now() - cueLoop.loopTime,
+      })
 
-      // store.set('settings')(
-      //   mutateObject(settings, props.loop, 'instances', props.loop.instances)
-      // );
+      store.set('settings')(
+        mutateObject(
+          settings,
+          props.loop,
+          'instances',
+          props.loop.instances
+        )
+      );
 
-      // store.set('cueLoop')(cueLoop);
+      store.set('cueLoop')(cueLoop);
     }
+
+    console.log('settings', settings);
+    sample.stop();
+    sample.play();
+
   };
 
   if (sample) {
     if (props.effects && props.effects.length) handleEffects();
     // if (props.loopInstances && props.loopInstances.length) handleLooping();
-    if (!cueLoop.isLooping && cueLoop.loopTime) handleLooping();
+    if (!cueLoop.isLooping && cueLoop.loopTime) {
+      handleLooping();
+    }
 
     return (
       <div className="col-24  session-view__channel__pad">
-        <div className="flex  flex-wrap  align-center  justify-center  h-100">
+        <div className="flex  flex-wrap  align-center  justify-center  h-100" onClick={handleClick}>
           sample {props.name}
-          <Sample sample={sample} handleCueing={handleCueing} />
         </div>
       </div>
     );
@@ -145,4 +149,4 @@ function SamplePad(props) {
   return false;
 }
 
-export default SamplePad;
+export default Channel;

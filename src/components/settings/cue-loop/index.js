@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import Store from '../../../store';
 
@@ -13,17 +13,17 @@ function CueLoop(props) {
 
   const handleClick = () => {
     setIsLooping(!isLooping);
-    cueLoop.isLooping = !cueLoop.isLooping;
+    cueLoop.isLooping = !cueLoop.isLooping
 
     // if looping and no loop time
     // if (!cueLoop.isLooping  && !isLoopTimeDetermined) {
     if (!cueLoop.isLooping) {
-      cueLoop.loopTime = performance.now() - cueLoop.loopTime;
-      setIsLoopTimeDetermined(true);
+      cueLoop.loopTime = (performance.now() - cueLoop.loopTime);
+      setIsLoopTimeDetermined(true)
     }
 
     store.set('cueLoop')(cueLoop);
-    // console.log('cueLoop', cueLoop);
+    console.log('cueLoop', cueLoop);
   };
 
   return (
