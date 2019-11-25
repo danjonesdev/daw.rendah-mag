@@ -12,7 +12,8 @@
     "react-dom": "16.8.6",
     "react-scripts": "3.0.1",
     "soundmanager2": "2.97.20170602",
-    "undux": "5.0.0-beta.22"
+    "undux": "5.0.0-beta.22",
+    "web-audio-daw": "^4.6.0"
   },
   "devDependencies": {
     "typescript": "3.3.3"
