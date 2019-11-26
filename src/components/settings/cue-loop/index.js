@@ -24,6 +24,8 @@ function CueLoop(props) {
       loops[loops.length - 1].loopCompleted = true;
     }
 
+    console.log('cueLoop', cueLoop);
+
     store.set('cueLoop')(cueLoop);
   };
 

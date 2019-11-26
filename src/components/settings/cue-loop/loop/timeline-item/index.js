@@ -78,11 +78,12 @@ function Loop(props) {
   const handleSampleInterval = () => {
     if (!loopFinalised) {
       const executeOrder = () => {
+        console.log('(sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration)', (sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration));
         setTimeout(() => {
           // sample.stop();
-          console.log('sound', sound);
+          console.log('sample', sample);
           sound.play();
-        }, loop.duration - sample.timeStamp)
+        }, (sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration))
         }
 
       setInterval(() => {
@@ -96,8 +97,8 @@ function Loop(props) {
   }
 
   if (sample && sound) {
-    console.log('timeline-item sample', sample);
-    console.log('timeline-item loop', loop);
+    // console.log('timeline-item sample', sample);
+    // console.log('timeline-item loop', loop);
 
     handleSampleInterval();
     return (
