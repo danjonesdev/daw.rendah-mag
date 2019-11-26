@@ -1,43 +1,46 @@
 import React, { useState } from "react";
 
-import Loop from './loop';
+import Loop from "./loop";
 
-import Store from '../../../store';
-import mutateObject from '../../../helpers/mutate-object';
+import Store from "../../../store";
+import mutateObject from "../../../helpers/mutate-object";
 
 function CueLoop(props) {
   const [isLooping, setIsLooping] = useState(false);
 
   const store = Store.useStore();
-  const cueLoop = store.get('cueLoop');
-  const loops = store.get('loops');
+  const cueLoop = store.get("cueLoop");
+  const loops = store.get("loops");
 
   const handleClick = () => {
     setIsLooping(!isLooping);
-    cueLoop.isLooping = !cueLoop.isLooping
+    cueLoop.isLooping = !cueLoop.isLooping;
 
     // if disabling loop, set loopCompleted on last object to true
     if (!cueLoop.isLooping) {
-      console.log('loops[loops.length - 1]', loops[loops.length - 1]);
-      loops[loops.length - 1].endTime =  performance.now();
-      loops[loops.length - 1].duration =  (loops[loops.length - 1].endTime - loops[loops.length - 1].startTime);
+      console.log("loops[loops.length - 1]", loops[loops.length - 1]);
+      loops[loops.length - 1].endTime = performance.now();
+      loops[loops.length - 1].duration =
+        loops[loops.length - 1].endTime - loops[loops.length - 1].startTime;
       loops[loops.length - 1].loopCompleted = true;
     }
 
-    console.log('cueLoop', cueLoop);
-
-    store.set('cueLoop')(cueLoop);
+    console.log("cueLoop", cueLoop);
+    store.set("cueLoop")(cueLoop);
   };
 
-  console.log('loopsFromSettings', loops);
+  console.log("loopsFromSettings", loops);
 
   return (
-    <div onClick={handleClick} className="col-6  settings__cue-loop">
-      CueLoop {`${cueLoop.isLooping}`}
+    <div onClick={handleClick} className="col-12  pa2  settings__cue-loop">
+      <p className="bg-black  white  pa2  dib  f7  shadow2   cp">
+        Cue {`${cueLoop.isLooping}`}
+      </p>
 
-      {loops.length > 0 && loops.map(loop => {
-        return <Loop {...loop} />
-      })}
+      {loops.length > 0 &&
+        loops.map(loop => {
+          return <Loop {...loop} />;
+        })}
     </div>
   );
 }

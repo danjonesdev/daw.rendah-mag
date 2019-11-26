@@ -34,10 +34,13 @@
   color: white;
   display: none;
   opacity: 0;
+  @extend .pa3;
 }
 
 .track-bar__item__modal__row {
-  // outline: 1px solid black;
+  @extend .pa2;
+  @extend .mb2;
+  @extend .shadow2;
 }
 
 .track-bar__item__modal__row > div {

@@ -1,13 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import CueLoop from './cue-loop';
-
+import CueLoop from "./cue-loop";
 
 function Settings() {
-
   return (
     <div className="w-100  flex  flex-wrap  track-bar">
-      <CueLoop />;
+      <CueLoop />
     </div>
   );
 }

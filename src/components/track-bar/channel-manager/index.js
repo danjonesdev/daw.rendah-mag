@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Store from "../../../store";
 
 import Modal from "../../modal";
-import Row from "./modal/row";
+import Row from "./row";
 
 function ChannelManager(props) {
   const store = Store.useStore();
@@ -26,10 +26,11 @@ function ChannelManager(props) {
 
       <Modal
         title="Channel Manager"
+        type="primary"
         isActive={modalActive}
         toggleModal={toggleModal}
       >
-        <div className="w-100  flex  flex-wrap">
+        <div className="w-100  flex  flex-wrap  pv3  ph3">
           {settings.channels.map(channel => {
             return (
               <>

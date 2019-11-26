@@ -1,15 +1,12 @@
 .modal {
   position: relative;
-  transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in-out;
   position: absolute;
   height: 80vh;
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: 100%;
-  background: grey;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  background: white;
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-right: 2px solid black;
@@ -17,8 +14,20 @@
   @extend .shadow3;
 }
 
-.modal.is-active {
+.modal.primary {
+  width: 100%;
+}
+
+.modal.secondary {
+  width: 70%;
+}
+
+.modal.primary.is-active {
   transform: translateY(-100%);
+}
+
+.modal.secondary.is-active {
+  transform: translateY(0);
 }
 
 .modal__header__close {
