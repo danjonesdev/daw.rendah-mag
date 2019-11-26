@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import Store from "../../../store";
 
-import Modal from "./modal";
+import Modal from "../../modal";
+import Row from "./modal/row";
 
 function ChannelManager(props) {
+  const store = Store.useStore();
+  const settings = store.get("settings");
   const [modalActive, setModalActive] = useState(false);
 
   const toggleModal = () => {
@@ -11,18 +15,34 @@ function ChannelManager(props) {
 
   return (
     <div className="col-6  track-bar__item">
-      <div
-        className="flex  flex-wrap  align-center  justify-center  track-bar__item__modal-trigger"
-        onClick={toggleModal}
-      >
-        {props.name}
+      <div className="track-bar__item__modal-trigger-wrapper">
+        <div
+          className="flex  flex-wrap  align-center  justify-center  track-bar__item__modal-trigger"
+          onClick={toggleModal}
+        >
+          {props.name}
+        </div>
       </div>
 
-      <div
-        className={`track-bar__item__modal  ${modalActive ? "is-active" : ""}`}
+      <Modal
+        title="Channel Manager"
+        isActive={modalActive}
+        toggleModal={toggleModal}
       >
-        <Modal {...props} toggleModal={toggleModal} />
-      </div>
+        <div className="w-100  flex  flex-wrap">
+          {settings.channels.map(channel => {
+            return (
+              <>
+                {channel.samples.map(sample => {
+                  if (channel.name === props.name) {
+                    return <Row channel={channel} sample={sample} />;
+                  }
+                })}
+              </>
+            );
+          })}
+        </div>
+      </Modal>
     </div>
   );
 }

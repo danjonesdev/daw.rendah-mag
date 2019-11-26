@@ -1,20 +1,28 @@
 .track-bar {
   height: 20vh;
+  padding: 4px;
 }
 
 .track-bar__item {
   //
 }
 
+// Trigger Button
+
+.track-bar__item__modal-trigger-wrapper {
+  height: 20vh;
+  padding: 4px;
+}
 
 .track-bar__item__modal-trigger {
   border-radius: 5px;
-  outline: 1px solid black;
   background: black;
   color: white;
   height: 100%;
   @extend .tac;
 }
+
+// Modal Content
 
 .track-bar__item__modal {
   position: absolute;
@@ -29,11 +37,10 @@
 }
 
 .track-bar__item__modal__row {
-  outline: 1px solid black;
+  // outline: 1px solid black;
 }
 
 .track-bar__item__modal__row > div {
-
 }
 
 .track-bar__item__modal.is-active {

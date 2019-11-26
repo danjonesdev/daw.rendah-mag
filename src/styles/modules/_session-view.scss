@@ -1,17 +1,24 @@
 .session-view {
   outline: 1px solid black;
   height: 80vh;
+  padding: 4px;
 }
 
 .session-view__channel {
   height: 80vh;
 }
 
-.session-view__channel__pad {
-  //
-  border-radius: 5px;
-  outline: 1px solid black;
-  height: 20vh;
+// Pad
 
+.session-view__channel__pad-wrapper {
+  height: 20vh;
+  padding: 4px;
+}
+
+.session-view__channel__pad {
+  border-radius: 5px;
+  background: white;
+  height: 100%;
   @extend .tac;
+  @extend .shadow2;
 }

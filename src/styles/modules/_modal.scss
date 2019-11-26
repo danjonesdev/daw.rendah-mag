@@ -1,0 +1,28 @@
+.modal {
+  position: relative;
+  transition: all 0.4s ease-in;
+  position: absolute;
+  height: 80vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  background: grey;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  transform: translateY(100%);
+  @extend .shadow3;
+}
+
+.modal.is-active {
+  transform: translateY(-100%);
+}
+
+.modal__header__close {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}

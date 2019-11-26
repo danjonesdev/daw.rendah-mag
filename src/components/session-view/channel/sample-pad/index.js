@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Wad from 'web-audio-daw';
-import isEqual from 'lodash/isEqual';
-import last from 'lodash/last';
+import React, { useState, useEffect, useRef } from "react";
+import Wad from "web-audio-daw";
+import isEqual from "lodash/isEqual";
+import last from "lodash/last";
 
-import Store from '../../../../store';
-import mutateObject from '../../../../helpers/mutate-object';
+import Store from "../../../../store";
+import mutateObject from "../../../../helpers/mutate-object";
 
 // const useCompare = (val: any) => {
 //     const prevVal = usePrevious(val)
@@ -26,20 +26,18 @@ function Channel(props) {
   const [error, setError] = useState(false);
 
   const store = Store.useStore();
-  const cueLoop = store.get('cueLoop');
-  const loops = store.get('loops');
-  const settings = store.get('settings');
-
+  const cueLoop = store.get("cueLoop");
+  const loops = store.get("loops");
+  const settings = store.get("settings");
 
   useEffect(() => {
     if (props.effects && props.effects.length) {
       handleEffects();
     } else {
-      const wadSample = new Wad({source : props.file})
+      const wadSample = new Wad({ source: props.file });
       setSample(wadSample);
     }
   }, [props]);
-
 
   const handleEffects = () => {
     var i;
@@ -49,18 +47,16 @@ function Channel(props) {
 
       for (let key in effect.properties) {
         if (effect.properties.hasOwnProperty(key)) {
-          if (key !== '_unique') {
-            propertyArray[key] = (effect.properties[key] / 10);
+          if (key !== "_unique") {
+            propertyArray[key] = effect.properties[key] / 10;
           }
         }
       }
 
-      const wadSample = new Wad(
-        {
-          source : props.file,
-          [effect.name] : propertyArray
-        }
-      )
+      const wadSample = new Wad({
+        source: props.file,
+        [effect.name]: propertyArray
+      });
 
       setSample(wadSample);
     }
@@ -70,9 +66,9 @@ function Channel(props) {
     // sample.stop();
     sample.play();
 
-    console.log('loops', loops);
-    console.log('props', props);
-    console.log('cueLoop', cueLoop);
+    console.log("loops", loops);
+    console.log("props", props);
+    console.log("cueLoop", cueLoop);
 
     // if looping
     if (cueLoop.isLooping) {
@@ -80,7 +76,7 @@ function Channel(props) {
         name: props.name,
         file: props.file,
         effects: props.effects,
-        timeStamp: performance.now(),
+        timeStamp: performance.now()
       };
 
       // check if first loop
@@ -114,18 +110,23 @@ function Channel(props) {
         loops.push(loopInstance);
         return;
       } else {
-        loops[loops.length - 1].timeline.push(sampleHitInstance)
+        loops[loops.length - 1].timeline.push(sampleHitInstance);
       }
     }
 
-    console.log('loops', loops);
+    console.log("loops", loops);
   };
 
   if (sample) {
     return (
-      <div className="col-24  session-view__channel__pad">
-        <div className="flex  flex-wrap  align-center  justify-center  h-100" onClick={handleClick}>
-          sample {props.name}
+      <div className="col-24  session-view__channel__pad-wrapper">
+        <div
+          className="col-24  session-view__channel__pad"
+          onClick={handleClick}
+        >
+          <div className="flex  flex-wrap  align-center  justify-center  h-100">
+            sample {props.name}
+          </div>
         </div>
       </div>
     );

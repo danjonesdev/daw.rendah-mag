@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Wad from 'web-audio-daw';
-import isEqual from 'lodash/isEqual';
-import last from 'lodash/last';
+import React, { useState, useEffect, useRef } from "react";
+import Wad from "web-audio-daw";
+import isEqual from "lodash/isEqual";
+import last from "lodash/last";
 
-import TimelineItem from './timeline-item';
+import TimelineItem from "./timeline-item";
 
 // import Store from '../../../../store';
 // import mutateObject from '../../../../helpers/mutate-object';
@@ -27,13 +27,14 @@ function Loop(props) {
   const [loop, setLoop] = useState(props);
 
   if (loop && loop.active && loop.loopCompleted) {
-    console.log('loop yo', loop);
+    console.log("loop yo", loop);
     return (
-      <div className="col-24  session-view__channel__pad">
+      <div className="col-24">
         <div className="flex  flex-wrap  align-center  justify-center  h-100">
-          {loop.timeline.length > 0 && loop.timeline.map(item => {
-            return <TimelineItem sample={item} loop={loop} />
-          })}
+          {loop.timeline.length > 0 &&
+            loop.timeline.map(item => {
+              return <TimelineItem sample={item} loop={loop} />;
+            })}
         </div>
       </div>
     );

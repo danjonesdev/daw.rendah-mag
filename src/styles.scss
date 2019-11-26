@@ -1,18 +1,32 @@
-@import './styles/vendor/normalize';
+@import "./styles/vendor/normalize";
 // @import 'vendor/flickity';
 
-@import './styles/functions';
-@import './styles/mixins';
-@import './styles/vars';
-@import './styles/utilities';
+@import "./styles/functions";
+@import "./styles/mixins";
+@import "./styles/vars";
+@import "./styles/utilities";
 
-@import './styles/modules/session-view';
-@import './styles/modules/track-bar';
+@import "./styles/modules/modal";
+@import "./styles/modules/session-view";
+@import "./styles/modules/track-bar";
 
-html, body {margin: 0; height: 100%; overflow: hidden}
+.session__track-bar {
+  background-image: url("https://ak1.picdn.net/shutterstock/videos/12194321/thumb/1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
 
 * {
-   box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 // utilities

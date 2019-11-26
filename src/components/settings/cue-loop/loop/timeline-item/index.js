@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Wad from 'web-audio-daw';
-import isEqual from 'lodash/isEqual';
-import last from 'lodash/last';
-
+import React, { useState, useEffect, useRef } from "react";
+import Wad from "web-audio-daw";
+import isEqual from "lodash/isEqual";
+import last from "lodash/last";
 
 // import Store from '../../../../store';
 // import mutateObject from '../../../../helpers/mutate-object';
@@ -44,11 +43,10 @@ function Loop(props) {
     if (sample.effects && sample.effects.length) {
       handleEffects();
     } else {
-      const wadSample = new Wad({source : sample.file})
+      const wadSample = new Wad({ source: sample.file });
       setSound(wadSample);
     }
   }, []);
-
 
   const handleEffects = () => {
     var i;
@@ -58,18 +56,16 @@ function Loop(props) {
 
       for (let key in effect.properties) {
         if (effect.properties.hasOwnProperty(key)) {
-          if (key !== '_unique') {
-            propertyArray[key] = (effect.properties[key] / 10);
+          if (key !== "_unique") {
+            propertyArray[key] = effect.properties[key] / 10;
           }
         }
       }
 
-      const wadSample = new Wad(
-        {
-          source : sample.file,
-          [effect.name] : propertyArray
-        }
-      )
+      const wadSample = new Wad({
+        source: sample.file,
+        [effect.name]: propertyArray
+      });
 
       setSound(wadSample);
     }
@@ -78,23 +74,28 @@ function Loop(props) {
   const handleSampleInterval = () => {
     if (!loopFinalised) {
       const executeOrder = () => {
-        console.log('(sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration)', (sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration));
+        console.log(
+          "(sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration)",
+          sample.timeStamp -
+            loop.duration -
+            (loop.timeline[0].timeStamp - loop.duration)
+        );
         setTimeout(() => {
           // sample.stop();
-          console.log('sample', sample);
+          console.log("sample", sample);
           sound.play();
-        }, (sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration))
-        }
+        }, sample.timeStamp - loop.duration - (loop.timeline[0].timeStamp - loop.duration));
+      };
 
       setInterval(() => {
-        executeOrder()
-      }, loop.duration)
+        executeOrder();
+      }, loop.duration);
 
       executeOrder();
 
-      setLoopFinalised(true)
+      setLoopFinalised(true);
     }
-  }
+  };
 
   if (sample && sound) {
     // console.log('timeline-item sample', sample);
@@ -102,7 +103,7 @@ function Loop(props) {
 
     handleSampleInterval();
     return (
-      <div className="col-24  session-view__channel__pad">
+      <div className="col-24">
         <div className="flex  flex-wrap  align-center  justify-center  h-100">
           sample
         </div>
