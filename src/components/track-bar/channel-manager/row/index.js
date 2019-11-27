@@ -28,17 +28,20 @@ function Row(props) {
 
   return (
     <div class="col-24  flex  flex-wrap  track-bar__item__modal__row">
-      <div className="col-10  flex  align-center">
-        <p className="black">{props.sample.name}</p>
+      <div className="col-2  flex  align-center">
+        <label class="switch" for={`${props.sample.name}-toggle`}>
+          <input
+            type="checkbox"
+            id={`${props.sample.name}-toggle`}
+            checked={props.sample.active}
+            name={`${props.sample.name}-toggle`}
+            onChange={toggleActive}
+          />
+          <div class="slider round"></div>
+        </label>
       </div>
-      <div className="col-4">
-        <input
-          className="bg-white  black"
-          type="checkbox"
-          checked={props.sample.active}
-          name={`${props.sample.name}-toggle`}
-          onChange={toggleActive}
-        />
+      <div className="col-10  flex  align-center">
+        <p className="black  pl2">{props.sample.name}</p>
       </div>
       <div className="col-10  flex  flex-wrap">
         <p

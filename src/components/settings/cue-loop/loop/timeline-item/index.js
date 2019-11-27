@@ -74,15 +74,8 @@ function Loop(props) {
   const handleSampleInterval = () => {
     if (!loopFinalised) {
       const executeOrder = () => {
-        console.log(
-          "(sample.timeStamp - loop.duration) - (loop.timeline[0].timeStamp - loop.duration)",
-          sample.timeStamp -
-            loop.duration -
-            (loop.timeline[0].timeStamp - loop.duration)
-        );
         setTimeout(() => {
           // sample.stop();
-          console.log("sample", sample);
           sound.play();
         }, sample.timeStamp - loop.duration - (loop.timeline[0].timeStamp - loop.duration));
       };

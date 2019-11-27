@@ -27,7 +27,6 @@ function Loop(props) {
   const [loop, setLoop] = useState(props);
 
   if (loop && loop.active && loop.loopCompleted) {
-    console.log("loop yo", loop);
     return (
       <div className="col-24">
         <div className="flex  flex-wrap  align-center  justify-center  h-100">
