@@ -6,13 +6,17 @@ function SessionView() {
   const store = Store.useStore();
   const settings = store.get("settings");
 
-  return (
-    <div className="w-100  flex  flex-wrap  session-view">
-      {settings.channels.map(item => {
-        return <Channel {...item} />;
-      })}
-    </div>
-  );
+  if (settings.categories) {
+    return (
+      <div className="w-100  flex  flex-wrap  session-view">
+        {settings.categories.map(item => {
+          return <Channel {...item} />;
+        })}
+      </div>
+    );
+  }
+
+  return false;
 }
 
 export default SessionView;

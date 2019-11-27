@@ -11,17 +11,15 @@ const randomKey = () => {
   return number;
 };
 
-const mapSettings = data => {
-  console.log("data", data);
-
+const mapSamples = data => {
   const categories = [];
 
   // Loop Categories
   for (var i = 0; i < data.length; i++) {
     const currentCategory = data[i];
-    console.log("currentCategory", currentCategory);
 
     const category = {
+      _key: randomKey(),
       slug: currentCategory.slug,
       name: currentCategory.name,
       samples: []
@@ -30,17 +28,36 @@ const mapSettings = data => {
     // Loop Packs to extract samples
     for (var ii = 0; ii < currentCategory.packs.length; ii++) {
       const currentPack = currentCategory.packs[ii];
-      console.log("currentPack", currentPack);
 
       // Loop samples and add to Category samples
       for (var iii = 0; iii < currentPack.samples.length; iii++) {
         const currentSample = currentPack.samples[iii];
-        console.log("currentSample", currentSample);
+
+        if (!currentSample.file) continue;
 
         const pack = {
+          _key: randomKey(),
           slug: currentSample.slug,
           name: currentSample.name,
-          pack: currentPack.name
+          pack: currentPack.name,
+          active: true,
+          file: currentSample.file.asset._ref
+            .replace("file-", "")
+            .replace("-mp3", "")
+            .replace("-wav", ""),
+          effects: [
+            {
+              _unique: 236472,
+              name: "delay",
+              test: 1,
+              properties: {
+                _unique: 236472,
+                delayTime: 0,
+                wet: 0,
+                feedback: 0
+              }
+            }
+          ]
         };
 
         category.samples.push(pack);
@@ -50,31 +67,31 @@ const mapSettings = data => {
     categories.push(category);
   }
 
-  console.log("categories", categories);
-
   return categories;
 };
 
 export const mapSettingsFromData = data => {
-  const settings = {};
+  const store = {};
 
   // Loops
-  settings.loops = [];
+  store.loops = [];
 
   // Cue Loop
-  settings.cueLoop = {
+  store.cueLoop = {
     _key: randomKey(),
     isLooping: false,
     loopTime: null
   };
 
   // Functions
-  settings.functions = {
+  store.functions = {
     mutateObject: mutateObject
   };
 
   // Settings
-  settings.settings = mapSettings(data);
+  store.settings = {
+    categories: mapSamples(data)
+  };
 
-  return settings;
+  return store;
 };

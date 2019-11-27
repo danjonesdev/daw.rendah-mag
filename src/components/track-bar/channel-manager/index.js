@@ -31,7 +31,7 @@ function ChannelManager(props) {
         toggleModal={toggleModal}
       >
         <div className="w-100  flex  flex-wrap  pv3  ph3">
-          {settings.channels.map(channel => {
+          {settings.categories.map(channel => {
             return (
               <>
                 {channel.samples.map(sample => {

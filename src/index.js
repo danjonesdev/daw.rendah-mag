@@ -32,6 +32,7 @@ function App() {
         "samples": *[_type == "sample" && references(*[_type=="category" && title == $currentCategory]._id) && references(^._id)] {
           "slug": slug.current,
           "name": title,
+          ...,
         }
       }
     `;
@@ -89,7 +90,7 @@ function App() {
     return (
       <div className="App">
         <Store.Container>
-          <Components settings={mapSettingsFromData(data)} />
+          <Components store={mapSettingsFromData(data)} />
         </Store.Container>
       </div>
     );

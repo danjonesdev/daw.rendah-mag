@@ -8,7 +8,7 @@ function SessionView() {
 
   return (
     <div className="w-100  flex  flex-wrap  track-bar">
-      {settings.channels.map(item => {
+      {settings.categories.map(item => {
         return <ChannelManager {...item} />;
       })}
     </div>
