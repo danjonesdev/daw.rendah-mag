@@ -42,9 +42,9 @@ const mapSamples = data => {
           pack: currentPack.name,
           active: true,
           file: currentSample.file.asset._ref
-            .replace("file-", "")
-            .replace("-mp3", "")
-            .replace("-wav", ""),
+            .replace("file-", "https://cdn.sanity.io/files/d5o9qdi6/production/")
+            .replace("-mp3", ".mp3")
+            .replace("-wav", ".wav"),
           effects: [
             {
               _unique: 236472,
