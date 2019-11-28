@@ -29,7 +29,6 @@ function LoopManager(props) {
           >
             <div className="w-100  flex  flex-wrap  pv3  ph3">
               {loops.map((loop, index) => {
-                console.log("loop", loop);
                 return <Loop loop={loop} />;
               })}
             </div>

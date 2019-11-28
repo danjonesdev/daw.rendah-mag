@@ -15,7 +15,6 @@ function LoopManager(props) {
     );
   };
 
-  console.log("props", loop);
   return (
     <div className="col-2  flex  align-center">
       <label className="switch" htmlFor={`${loop.startTime}-toggle`}>

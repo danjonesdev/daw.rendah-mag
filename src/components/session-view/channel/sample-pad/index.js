@@ -73,7 +73,9 @@ function Channel(props) {
         file: props.file,
         effects: props.effects,
         timeStamp: performance.now(),
-        timeFromStartOfLoop: (cueLoop.loopRestarted) ? performance.now() - cueLoop.loopRestarted : 0,
+        timeFromStartOfLoop: cueLoop.loopRestarted
+          ? performance.now() - cueLoop.loopRestarted
+          : 0
       };
 
       // check if first loop
@@ -82,8 +84,8 @@ function Channel(props) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
-          endTime: null,
-          duration: null,
+          // endTime: null,
+          // duration: null,
           loopCompleted: false,
           timeline: [sampleHitInstance]
         };
@@ -98,8 +100,8 @@ function Channel(props) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
-          endTime: null,
-          duration: null,
+          // endTime: null,
+          // duration: null,
           loopCompleted: false,
           timeline: [sampleHitInstance]
         };

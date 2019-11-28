@@ -58,7 +58,7 @@ function CueLoop(props) {
       {loops.length > 0 &&
         loops.map((loop, index) => {
           if (loop.loopCompleted) {
-            return <LoopInstance key={index} {...loop} loopIndex={index} />;
+            return <LoopInstance key={index} loop={loop} loopIndex={index} />;
           }
         })}
       {loops.length > 0 && loops[loops.length - 1].loopCompleted && (
