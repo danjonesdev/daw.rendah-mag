@@ -1,3 +1,5 @@
+// Track Bar
+
 .track-bar {
   height: 20vh;
   padding: 4px;
@@ -7,7 +9,7 @@
   //
 }
 
-// Trigger Button
+// Channel Trigger Button
 
 .track-bar__item__modal-trigger-wrapper {
   height: 20vh;
@@ -22,28 +24,12 @@
   @extend .tac;
 }
 
-// Modal Content
-
-.track-bar__item__modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: grey;
-  color: white;
-  display: none;
-  opacity: 0;
-  @extend .pa3;
-}
+// Channel Modal Content
 
 .track-bar__item__modal__row {
   @extend .pa2;
   @extend .mb2;
   @extend .shadow2;
-}
-
-.track-bar__item__modal__row > div {
 }
 
 .track-bar__item__modal.is-active {

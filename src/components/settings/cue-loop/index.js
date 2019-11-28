@@ -50,21 +50,36 @@ function CueLoop(props) {
     store.set("loops")(loopsNew);
   };
 
-  return (
-    <div onClick={handleClick} className="col-12  pa2  settings__cue-loop">
-      <p className="bg-black  white  pa2  dib  f7  shadow2   cp">
-        Cue {`${cueLoop.isLooping}`}
+  const cueButton = () => {
+    const hasLooped = loops.length && loops[loops.length - 1].loopCompleted;
+
+    return (
+      <p
+        onClick={hasLooped ? null : handleClick}
+        className={`bg-black  white  pa2  w-100  f7  shadow2   cp ${
+          hasLooped ? "o-50" : ""
+        }`}
+      >
+        Cue Loop {`${cueLoop.isLooping}`}
       </p>
+    );
+  };
+
+  return (
+    <>
+      <div className="col-12  pa2">{cueButton()}</div>
+
+      <div className="col-12  pa2">
+        <Loopmanager loops={loops} />
+      </div>
+
       {loops.length > 0 &&
         loops.map((loop, index) => {
           if (loop.loopCompleted) {
             return <LoopInstance key={index} loop={loop} loopIndex={index} />;
           }
         })}
-      {loops.length > 0 && loops[loops.length - 1].loopCompleted && (
-        <Loopmanager loops={loops} />
-      )}
-    </div>
+    </>
   );
 }
 
