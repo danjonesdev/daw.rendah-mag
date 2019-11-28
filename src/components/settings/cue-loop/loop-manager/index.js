@@ -23,13 +23,13 @@ function LoopManager(props) {
         <div className="flex  flex-wrap  align-center  justify-center  h-100">
           <Modal
             title="Loop Manager"
-            type="primary"
+            type="secondary"
             isActive={modalActive}
             toggleModal={toggleModal}
           >
             <div className="w-100  flex  flex-wrap  pv3  ph3">
               {loops.map((loop, index) => {
-                return <Loop loop={loop} />;
+                return <Loop key={index} loop={loop} loopIndex={index} />;
               })}
             </div>
           </Modal>

@@ -15,18 +15,25 @@ function LoopManager(props) {
     );
   };
 
+  console.log("loop instance", loop);
+
   return (
-    <div className="col-2  flex  align-center">
-      <label className="switch" htmlFor={`${loop.startTime}-toggle`}>
-        <input
-          type="checkbox"
-          id={`${loop.startTime}-toggle`}
-          checked={loop.active}
-          name={`${loop.startTime}-toggle`}
-          onChange={toggleActive}
-        />
-        <div className="slider round"></div>
-      </label>
+    <div className="pv2  w-100  flex  align-center">
+      <div className="col-4">
+        <p>Loop {props.loopIndex + 1}</p>
+      </div>
+      <div className="col-20">
+        <label className="switch" htmlFor={`${loop.startTime}-toggle`}>
+          <input
+            type="checkbox"
+            id={`${loop.startTime}-toggle`}
+            checked={loop.active}
+            name={`${loop.startTime}-toggle`}
+            onChange={toggleActive}
+          />
+          <div className="slider round"></div>
+        </label>
+      </div>
     </div>
   );
 }
