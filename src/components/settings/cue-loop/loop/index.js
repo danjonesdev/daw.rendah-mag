@@ -31,8 +31,8 @@ function Loop(props) {
       <div className="col-24">
         <div className="flex  flex-wrap  align-center  justify-center  h-100">
           {loop.timeline.length > 0 &&
-            loop.timeline.map(item => {
-              return <TimelineItem sample={item} loop={loop} />;
+            loop.timeline.map((sample, index) => {
+              return <TimelineItem sample={sample} loop={loop} loopIndex={props.loopIndex} sampleIndex={index} />;
             })}
         </div>
       </div>

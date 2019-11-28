@@ -13,22 +13,48 @@ function CueLoop(props) {
   const loops = store.get("loops");
 
   const handleClick = () => {
-    setIsLooping(!isLooping);
-    cueLoop.isLooping = !cueLoop.isLooping;
+    // console.log('from', performance.now());
 
-    if (!loops.length || (loops.length && loops[loops.length - 1].endTime)) {
-      return;
-    }
+
+    const cueLoopNew = cueLoop;
+    const loopsNew = loops;
+
+    // Toggle looping
+    setIsLooping(!isLooping);
+    cueLoopNew.isLooping = !cueLoopNew.isLooping;
+
+    if (!loopsNew.length) return;
 
     // if disabling loop, set loopCompleted on last object to true
-    if (!cueLoop.isLooping) {
-      loops[loops.length - 1].endTime = performance.now();
-      loops[loops.length - 1].duration =
-        loops[loops.length - 1].endTime - loops[loops.length - 1].startTime;
-      loops[loops.length - 1].loopCompleted = true;
+    if (!cueLoopNew.isLooping) {
+      // loopsNew[loopsNew.length - 1].endTime = performance.now();
+      //
+      // loopsNew[loopsNew.length - 1].duration =
+      //   loopsNew[loopsNew.length - 1].endTime - loopsNew[loopsNew.length - 1].startTime;
+
+      loopsNew[loopsNew.length - 1].loopCompleted = true;
     }
 
-    store.set("cueLoop")(cueLoop);
+    console.log('loopsNew', loopsNew);
+
+    // If first loop, set master loop time
+    if (loopsNew.length === 1 && !cueLoopNew.isLooping) {
+      cueLoopNew.loopTime = performance.now() - loopsNew[0].startTime
+      console.log('set looptime', performance.now() - loopsNew[0].startTime);
+
+      setInterval(() => {
+        cueLoopNew.loopRestarted = performance.now()
+        // If loop is still active + last one hasn't been loopCompleted
+        // then automatically close loop.
+        if (cueLoopNew.isLooping && !loopsNew[loopsNew.length - 1].loopCompleted) {
+          handleClick();
+        }
+
+      }, cueLoopNew.loopTime);
+    }
+
+    store.set("cueLoop")(cueLoopNew);
+    store.set("loops")(loopsNew);
   };
 
   return (
@@ -38,8 +64,10 @@ function CueLoop(props) {
       </p>
 
       {loops.length > 0 &&
-        loops.map(loop => {
-          return <Loop {...loop} />;
+        loops.map((loop, index) => {
+          if (loop.loopCompleted) {
+            return <Loop {...loop} loopIndex={index} />;
+          }
         })}
     </div>
   );

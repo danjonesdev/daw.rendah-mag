@@ -3,6 +3,8 @@ import Wad from "web-audio-daw";
 import isEqual from "lodash/isEqual";
 import last from "lodash/last";
 
+import Store from "../../../../../store";
+
 // import Store from '../../../../store';
 // import mutateObject from '../../../../helpers/mutate-object';
 
@@ -26,6 +28,13 @@ function Loop(props) {
   const [sample, setSample] = useState(props.sample);
   const [sound, setSound] = useState(null);
   const [loopFinalised, setLoopFinalised] = useState(false);
+
+  const store = Store.useStore();
+  const cueLoop = store.get("cueLoop");
+  const loops = store.get("loops");
+
+
+
 
   // const handleLooping = () => {
   //   console.log('handleLooping');
@@ -73,19 +82,33 @@ function Loop(props) {
 
   const handleSampleInterval = () => {
     if (!loopFinalised) {
+      let sampleTimeout = sampleTimeout = sample.timeStamp - cueLoop.loopTime - (loop.timeline[0].timeStamp - cueLoop.loopTime);
+
+      // If initial loop has already happened
+      if (sample.timeFromStartOfLoop > 0) {
+        sampleTimeout += loop.timeline[0].timeFromStartOfLoop
+      }
+
       const executeOrder = () => {
         setTimeout(() => {
-          // sample.stop();
+          // sound.stop();
+          // console.log('to', performance.now());
+          if (props.loopIndex === 1)  {
+            console.log('sampleTimeout', sampleTimeout);
+            console.log('cueLoop.loopTime', cueLoop.loopTime);
+          }
+
+
           sound.play();
-        }, sample.timeStamp - loop.duration - (loop.timeline[0].timeStamp - loop.duration));
+        }, sampleTimeout);
       };
+
 
       setInterval(() => {
         executeOrder();
-      }, loop.duration);
+      }, cueLoop.loopTime);
 
       executeOrder();
-
       setLoopFinalised(true);
     }
   };

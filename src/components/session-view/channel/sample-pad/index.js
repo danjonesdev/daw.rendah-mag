@@ -66,9 +66,11 @@ function Channel(props) {
     // sample.stop();
     sample.play();
 
-    console.log("loops", loops);
-    console.log("props", props);
-    console.log("cueLoop", cueLoop);
+    // console.log("loops", loops);
+    // console.log("props", props);
+    // console.log("cueLoop", cueLoop);
+
+    console.log('(cueLoop.loopRestarted) ? performance.now()', performance.now() - cueLoop.loopRestarted);
 
     // if looping
     if (cueLoop.isLooping) {
@@ -76,7 +78,8 @@ function Channel(props) {
         name: props.name,
         file: props.file,
         effects: props.effects,
-        timeStamp: performance.now()
+        timeStamp: performance.now(),
+        timeFromStartOfLoop: (cueLoop.loopRestarted) ? performance.now() - cueLoop.loopRestarted : 0,
       };
 
       // check if first loop
@@ -114,7 +117,7 @@ function Channel(props) {
       }
     }
 
-    console.log("loops", loops);
+    // console.log("loops", loops);
   };
 
   if (sample) {

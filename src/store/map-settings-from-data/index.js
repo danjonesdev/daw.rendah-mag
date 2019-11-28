@@ -80,7 +80,8 @@ export const mapSettingsFromData = data => {
   store.cueLoop = {
     _key: randomKey(),
     isLooping: false,
-    loopTime: null
+    loopTime: null,
+    loopRestarted: null,
   };
 
   // Functions
