@@ -7,8 +7,6 @@ import Store from "../../../store";
 import mutateObject from "../../../helpers/mutate-object";
 
 function CueLoop(props) {
-  const [isLooping, setIsLooping] = useState(false);
-
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
   const loops = store.get("loops");
@@ -18,10 +16,9 @@ function CueLoop(props) {
     const loopsNew = loops;
 
     // Toggle looping
-    setIsLooping(!isLooping);
     cueLoopNew.isLooping = !cueLoopNew.isLooping;
 
-    if (!loopsNew.length) return;
+    // if (!loopsNew.length) return;
 
     // if disabling loop, set loopCompleted on last object to true
     if (!cueLoopNew.isLooping) {
@@ -42,23 +39,21 @@ function CueLoop(props) {
           !loopsNew[loopsNew.length - 1].loopCompleted
         ) {
           handleClick();
+          return;
         }
       }, cueLoopNew.loopTime);
     }
 
-    store.set("cueLoop")(cueLoopNew);
-    store.set("loops")(loopsNew);
+      store.set("cueLoop")(cueLoopNew);
+      store.set("loops")(loopsNew);
   };
 
   const cueButton = () => {
-    const hasLooped = loops.length && loops[loops.length - 1].loopCompleted;
 
     return (
       <p
-        onClick={hasLooped ? null : handleClick}
-        className={`bg-black  white  pa2  w-100  f7  shadow2   cp ${
-          hasLooped ? "o-50" : ""
-        }`}
+        onClick={handleClick}
+        className="bg-black  white  pa2  w-100  f7  shadow2   cp"
       >
         Cue Loop {`${cueLoop.isLooping}`}
       </p>
@@ -75,6 +70,7 @@ function CueLoop(props) {
 
       {loops.length > 0 &&
         loops.map((loop, index) => {
+          console.log('loop from top', loop);
           if (loop.loopCompleted) {
             return <LoopInstance key={index} loop={loop} loopIndex={index} />;
           }

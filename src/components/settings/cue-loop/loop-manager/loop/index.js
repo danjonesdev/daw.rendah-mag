@@ -15,8 +15,6 @@ function LoopManager(props) {
     );
   };
 
-  console.log("loop instance", loop);
-
   return (
     <div className="pv2  w-100  flex  align-center">
       <div className="col-4">
