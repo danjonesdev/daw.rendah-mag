@@ -5,48 +5,14 @@ import last from "lodash/last";
 
 import Store from "../../../../../store";
 
-// import Store from '../../../../store';
-// import mutateObject from '../../../../helpers/mutate-object';
-
-// const useCompare = (val: any) => {
-//     const prevVal = usePrevious(val)
-//     // console.log('prevVal', prevVal);
-//     // console.log('val', val);
-//     return !isEqual(prevVal, val)
-// }
-//
-// const usePrevious = (value) => {
-//     const ref = useRef();
-//     useEffect(() => {
-//       ref.current = value;
-//     });
-//     return ref.current;
-// }
-
 function Loop(props) {
   const [loop, setLoop] = useState(props.loop);
   const [sample, setSample] = useState(props.sample);
   const [sound, setSound] = useState(null);
-  const [loopFinalised, setLoopFinalised] = useState(false);
+  const [loopInitiated, setLoopInitiated] = useState(false);
 
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
-  const loops = store.get("loops");
-
-
-
-
-  // const handleLooping = () => {
-  //   console.log('handleLooping');
-  //   if (hasLoopsChanged || inititalLoopFlag) {
-  //     console.log('handleLooping', props.loop);
-  //     console.log('cueLoop.loopTime', cueLoop.loopTime);
-  //
-  //
-  //
-  //   setInititalLoopFlag(false);
-  //   }
-  // }
 
   useEffect(() => {
     if (sample.effects && sample.effects.length) {
@@ -80,33 +46,35 @@ function Loop(props) {
     }
   };
 
-  const handleSampleInterval = () => {
-    if (!loopFinalised) {
-      let sampleTimeout = sampleTimeout = sample.timeStamp - cueLoop.loopTime - (loop.timeline[0].timeStamp - cueLoop.loopTime);
+  const handleSample = () => {
+    if (!loopInitiated) {
+      let sampleTimeout = (sampleTimeout =
+        sample.timeStamp -
+        cueLoop.loopTime -
+        (loop.timeline[0].timeStamp - cueLoop.loopTime));
 
       // If initial loop has already happened -> Offset loop
       if (sample.timeFromStartOfLoop > 0) {
-        sampleTimeout += loop.timeline[0].timeFromStartOfLoop
+        sampleTimeout += loop.timeline[0].timeFromStartOfLoop;
       }
 
-      const executeOrder = () => {
+      const handleTimeout = () => {
         setTimeout(() => {
-          sound.play();
+          if (loop.active) sound.play();
         }, sampleTimeout);
       };
 
       setInterval(() => {
-        executeOrder();
+        if (loop.active) handleTimeout();
       }, cueLoop.loopTime);
 
-      executeOrder();
-      setLoopFinalised(true);
+      handleTimeout();
+      setLoopInitiated(true);
     }
   };
 
   if (sample && sound) {
-    handleSampleInterval();
-
+    handleSample();
     return false;
   }
 

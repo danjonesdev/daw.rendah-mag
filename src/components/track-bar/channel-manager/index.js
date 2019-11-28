@@ -36,7 +36,13 @@ function ChannelManager(props) {
               <div className="w-100" key={index}>
                 {channel.samples.map((sample, index2) => {
                   if (channel.name === props.name) {
-                    return <Row key={`${index}-${index2}`} channel={channel} sample={sample} />;
+                    return (
+                      <Row
+                        key={`${index}-${index2}`}
+                        channel={channel}
+                        sample={sample}
+                      />
+                    );
                   }
                 })}
               </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import Loop from "./loop";
+import LoopInstance from "./loop-instance";
+import Loopmanager from "./loop-manager";
 
 import Store from "../../../store";
 import mutateObject from "../../../helpers/mutate-object";
@@ -29,17 +30,19 @@ function CueLoop(props) {
 
     // If first loop, set master loop time
     if (loopsNew.length === 1 && !cueLoopNew.isLooping) {
-      cueLoopNew.loopTime = performance.now() - loopsNew[0].startTime
+      cueLoopNew.loopTime = performance.now() - loopsNew[0].startTime;
       setInterval(() => {
         // Log restart of loop
-        cueLoopNew.loopRestarted = performance.now()
+        cueLoopNew.loopRestarted = performance.now();
 
         // If loop is still active + last one hasn't been loopCompleted
         // then automatically close loop.
-        if (cueLoopNew.isLooping && !loopsNew[loopsNew.length - 1].loopCompleted) {
+        if (
+          cueLoopNew.isLooping &&
+          !loopsNew[loopsNew.length - 1].loopCompleted
+        ) {
           handleClick();
         }
-
       }, cueLoopNew.loopTime);
     }
 
@@ -52,13 +55,15 @@ function CueLoop(props) {
       <p className="bg-black  white  pa2  dib  f7  shadow2   cp">
         Cue {`${cueLoop.isLooping}`}
       </p>
-
       {loops.length > 0 &&
         loops.map((loop, index) => {
           if (loop.loopCompleted) {
-            return <Loop key={index} {...loop} loopIndex={index} />;
+            return <LoopInstance key={index} {...loop} loopIndex={index} />;
           }
         })}
+      {loops.length > 0 && loops[loops.length - 1].loopCompleted && (
+        <Loopmanager loops={loops} />
+      )}
     </div>
   );
 }
