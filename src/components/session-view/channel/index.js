@@ -5,9 +5,9 @@ function Channel(props) {
   return (
     <div className="col-6  session-view__channel">
       <div className="flex  flex-wrap  h-100">
-        {props.samples.map(item => {
+        {props.samples.map((item, index) => {
           if (item.active) {
-            return <SamplePad {...item} />;
+            return <SamplePad key={index} {...item} />;
           }
         })}
       </div>

@@ -27,9 +27,9 @@ function Row(props) {
   };
 
   return (
-    <div class="col-24  flex  flex-wrap  track-bar__item__modal__row">
+    <div className="col-24  flex  flex-wrap  track-bar__item__modal__row">
       <div className="col-2  flex  align-center">
-        <label class="switch" for={`${props.sample.name}-toggle`}>
+        <label className="switch" htmlFor={`${props.sample.name}-toggle`}>
           <input
             type="checkbox"
             id={`${props.sample.name}-toggle`}
@@ -37,7 +37,7 @@ function Row(props) {
             name={`${props.sample.name}-toggle`}
             onChange={toggleActive}
           />
-          <div class="slider round"></div>
+          <div className="slider round"></div>
         </label>
       </div>
       <div className="col-10  flex  align-center">
@@ -51,9 +51,10 @@ function Row(props) {
           Effects
         </p>
         {props.sample.effects &&
-          props.sample.effects.map(effect => {
+          props.sample.effects.map((effect, index) => {
             return (
               <Modal
+                key={index}
                 title={`${props.sample.name} Effects`}
                 type="secondary"
                 isActive={modalActive}

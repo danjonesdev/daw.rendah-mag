@@ -84,25 +84,16 @@ function Loop(props) {
     if (!loopFinalised) {
       let sampleTimeout = sampleTimeout = sample.timeStamp - cueLoop.loopTime - (loop.timeline[0].timeStamp - cueLoop.loopTime);
 
-      // If initial loop has already happened
+      // If initial loop has already happened -> Offset loop
       if (sample.timeFromStartOfLoop > 0) {
         sampleTimeout += loop.timeline[0].timeFromStartOfLoop
       }
 
       const executeOrder = () => {
         setTimeout(() => {
-          // sound.stop();
-          // console.log('to', performance.now());
-          if (props.loopIndex === 1)  {
-            console.log('sampleTimeout', sampleTimeout);
-            console.log('cueLoop.loopTime', cueLoop.loopTime);
-          }
-
-
           sound.play();
         }, sampleTimeout);
       };
-
 
       setInterval(() => {
         executeOrder();
@@ -114,18 +105,11 @@ function Loop(props) {
   };
 
   if (sample && sound) {
-    // console.log('timeline-item sample', sample);
-    // console.log('timeline-item loop', loop);
-
     handleSampleInterval();
-    return (
-      <div className="col-24">
-        <div className="flex  flex-wrap  align-center  justify-center  h-100">
-          sample
-        </div>
-      </div>
-    );
+
+    return false;
   }
+
   return false;
 }
 

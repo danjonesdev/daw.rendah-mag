@@ -8,8 +8,8 @@ function SessionView() {
 
   return (
     <div className="w-100  flex  flex-wrap  track-bar">
-      {settings.categories.map(item => {
-        return <ChannelManager {...item} />;
+      {settings.categories.map((item, index) => {
+        return <ChannelManager key={index} {...item} />;
       })}
     </div>
   );

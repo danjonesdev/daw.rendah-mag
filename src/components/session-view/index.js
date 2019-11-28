@@ -9,8 +9,8 @@ function SessionView() {
   if (settings.categories) {
     return (
       <div className="w-100  flex  flex-wrap  session-view">
-        {settings.categories.map(item => {
-          return <Channel {...item} />;
+        {settings.categories.map((item, index) => {
+          return <Channel key={index} {...item} />
         })}
       </div>
     );

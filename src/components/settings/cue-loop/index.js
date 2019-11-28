@@ -13,9 +13,6 @@ function CueLoop(props) {
   const loops = store.get("loops");
 
   const handleClick = () => {
-    // console.log('from', performance.now());
-
-
     const cueLoopNew = cueLoop;
     const loopsNew = loops;
 
@@ -27,23 +24,16 @@ function CueLoop(props) {
 
     // if disabling loop, set loopCompleted on last object to true
     if (!cueLoopNew.isLooping) {
-      // loopsNew[loopsNew.length - 1].endTime = performance.now();
-      //
-      // loopsNew[loopsNew.length - 1].duration =
-      //   loopsNew[loopsNew.length - 1].endTime - loopsNew[loopsNew.length - 1].startTime;
-
       loopsNew[loopsNew.length - 1].loopCompleted = true;
     }
-
-    console.log('loopsNew', loopsNew);
 
     // If first loop, set master loop time
     if (loopsNew.length === 1 && !cueLoopNew.isLooping) {
       cueLoopNew.loopTime = performance.now() - loopsNew[0].startTime
-      console.log('set looptime', performance.now() - loopsNew[0].startTime);
-
       setInterval(() => {
+        // Log restart of loop
         cueLoopNew.loopRestarted = performance.now()
+
         // If loop is still active + last one hasn't been loopCompleted
         // then automatically close loop.
         if (cueLoopNew.isLooping && !loopsNew[loopsNew.length - 1].loopCompleted) {
@@ -66,7 +56,7 @@ function CueLoop(props) {
       {loops.length > 0 &&
         loops.map((loop, index) => {
           if (loop.loopCompleted) {
-            return <Loop {...loop} loopIndex={index} />;
+            return <Loop key={index} {...loop} loopIndex={index} />;
           }
         })}
     </div>

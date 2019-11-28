@@ -66,12 +66,6 @@ function Channel(props) {
     // sample.stop();
     sample.play();
 
-    // console.log("loops", loops);
-    // console.log("props", props);
-    // console.log("cueLoop", cueLoop);
-
-    console.log('(cueLoop.loopRestarted) ? performance.now()', performance.now() - cueLoop.loopRestarted);
-
     // if looping
     if (cueLoop.isLooping) {
       const sampleHitInstance = {
@@ -116,8 +110,6 @@ function Channel(props) {
         loops[loops.length - 1].timeline.push(sampleHitInstance);
       }
     }
-
-    // console.log("loops", loops);
   };
 
   if (sample) {

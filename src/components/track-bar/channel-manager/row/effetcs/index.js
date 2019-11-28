@@ -28,7 +28,7 @@ function Effects(props) {
       if (properties.hasOwnProperty(key)) {
         if (key !== "_unique") {
           indents.push(
-            <div className="col-24  flex  flex-wrap  pv1">
+            <div key={key} className="col-24  flex  flex-wrap  pv1">
               <div className="col-12">
                 {key} {Math.round(properties[key])}
               </div>

@@ -31,15 +31,15 @@ function ChannelManager(props) {
         toggleModal={toggleModal}
       >
         <div className="w-100  flex  flex-wrap  pv3  ph3">
-          {settings.categories.map(channel => {
+          {settings.categories.map((channel, index) => {
             return (
-              <>
-                {channel.samples.map(sample => {
+              <div className="w-100" key={index}>
+                {channel.samples.map((sample, index2) => {
                   if (channel.name === props.name) {
-                    return <Row channel={channel} sample={sample} />;
+                    return <Row key={`${index}-${index2}`} channel={channel} sample={sample} />;
                   }
                 })}
-              </>
+              </div>
             );
           })}
         </div>

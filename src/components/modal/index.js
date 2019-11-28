@@ -12,7 +12,7 @@ function Modal(props) {
         >
           x
         </span>
-        <h2 class="tac  mla  mra  pt3  black">{props.title}</h2>
+        <h2 className="tac  mla  mra  pt3  black">{props.title}</h2>
       </div>
       <div className="modal__body">{props.children}</div>
     </div>
