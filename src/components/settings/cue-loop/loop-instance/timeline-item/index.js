@@ -14,14 +14,23 @@ function Loop(props) {
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
 
-  useEffect(() => {
+  const assignSound = () => {
     if (sample.effects && sample.effects.length) {
       handleEffects();
     } else {
       const wadSample = new Wad({ source: sample.file });
       setSound(wadSample);
     }
+  };
+
+  useEffect(() => {
+    assignSound();
   }, []);
+
+  // TODO: watch for sample FX change?
+  // useEffect(() => {
+  //   saw.setDetune(-50)
+  // }, [props.loop.loopCompleted]);
 
   const handleEffects = () => {
     var i;
@@ -60,12 +69,12 @@ function Loop(props) {
 
       const handleTimeout = () => {
         setTimeout(() => {
-          if (loop.active) sound.play();
+          if (loop.active && loop.loopCompleted) sound.play();
         }, sampleTimeout);
       };
 
       setInterval(() => {
-        if (loop.active) handleTimeout();
+        if (loop.active && loop.loopCompleted) handleTimeout();
       }, cueLoop.loopTime);
 
       handleTimeout();

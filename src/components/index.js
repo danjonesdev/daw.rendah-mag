@@ -24,12 +24,20 @@ function Components(props) {
     return typeof e === "object" && e !== null;
   };
 
+  // const handleDebug = () => {
+  //   console.log("settings", settings);
+  //   console.log("loops", loops);
+  //   console.log("cueLoop", cueLoop);
+  //   console.log("functions", functions);
+  // };
+
   if (
     isObject(settings) &&
     isObject(loops) &&
     isObject(cueLoop) &&
     isObject(functions)
   ) {
+    console.log("render");
     return (
       <div className="flex">
         <div className="col-18  session__track-bar">
@@ -43,6 +51,14 @@ function Components(props) {
         <div className="col-6">
           <Settings />
         </div>
+        {/*
+          <p
+            className="fixed  top  left  pa2  bg-black  white  z9"
+            onClick={handleDebug}
+          >
+            Debug
+          </p>
+        */}
       </div>
     );
   }

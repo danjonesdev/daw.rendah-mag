@@ -18,9 +18,10 @@ function CueLoop(props) {
     // Toggle looping
     cueLoopNew.isLooping = !cueLoopNew.isLooping;
 
-    // if (!loopsNew.length) return;
+    // if disabling and no loops exist, return
+    if (!cueLoopNew.isLooping && !loopsNew.length) return;
 
-    // if disabling loop, set loopCompleted on last object to true
+    // if disabling, set loopCompleted on last object to true
     if (!cueLoopNew.isLooping) {
       loopsNew[loopsNew.length - 1].loopCompleted = true;
     }
@@ -44,12 +45,11 @@ function CueLoop(props) {
       }, cueLoopNew.loopTime);
     }
 
-      store.set("cueLoop")(cueLoopNew);
-      store.set("loops")(loopsNew);
+    store.set("cueLoop")(cueLoopNew);
+    store.set("loops")(loopsNew);
   };
 
   const cueButton = () => {
-
     return (
       <p
         onClick={handleClick}
@@ -70,10 +70,7 @@ function CueLoop(props) {
 
       {loops.length > 0 &&
         loops.map((loop, index) => {
-          console.log('loop from top', loop);
-          if (loop.loopCompleted) {
-            return <LoopInstance key={index} loop={loop} loopIndex={index} />;
-          }
+          return <LoopInstance key={index} loop={loop} loopIndex={index} />;
         })}
     </>
   );
