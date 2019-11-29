@@ -74,7 +74,7 @@ function Loop(props) {
       };
 
       setInterval(() => {
-        if (loop.active && loop.loopCompleted) handleTimeout();
+        if (loop.loopCompleted) handleTimeout();
       }, cueLoop.loopTime);
 
       handleTimeout();

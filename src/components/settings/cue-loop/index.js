@@ -11,20 +11,24 @@ function CueLoop(props) {
   const cueLoop = store.get("cueLoop");
   const loops = store.get("loops");
 
-  const handleClick = () => {
+  const handleLoopToggle = (triggerType) => {
     const cueLoopNew = cueLoop;
     const loopsNew = loops;
 
-    // Toggle looping
-    cueLoopNew.isLooping = !cueLoopNew.isLooping;
-
     // if disabling and no loops exist, return
-    if (!cueLoopNew.isLooping && !loopsNew.length) return;
+    if (cueLoopNew.isLooping && !loopsNew.length) return;
+
+    // or if disabling and first loop is already
+    // completed and tried to diable via click, return
+    if (cueLoopNew.isLooping && loopsNew[0].loopCompleted && triggerType === 'Click') return;
 
     // if disabling, set loopCompleted on last object to true
-    if (!cueLoopNew.isLooping) {
+    if (cueLoopNew.isLooping) {
       loopsNew[loopsNew.length - 1].loopCompleted = true;
     }
+
+    // Toggle looping
+    cueLoopNew.isLooping = !cueLoopNew.isLooping;
 
     // If first loop, set master loop time
     if (loopsNew.length === 1 && !cueLoopNew.isLooping) {
@@ -39,7 +43,7 @@ function CueLoop(props) {
           cueLoopNew.isLooping &&
           !loopsNew[loopsNew.length - 1].loopCompleted
         ) {
-          handleClick();
+          handleLoopToggle('Recursion');
           return;
         }
       }, cueLoopNew.loopTime);
@@ -52,7 +56,7 @@ function CueLoop(props) {
   const cueButton = () => {
     return (
       <p
-        onClick={handleClick}
+        onClick={() => {handleLoopToggle('Click')}}
         className="bg-black  white  pa2  w-100  f7  shadow2   cp"
       >
         Cue Loop {`${cueLoop.isLooping}`}
