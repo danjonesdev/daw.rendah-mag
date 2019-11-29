@@ -71,9 +71,7 @@ function CueLoop(props) {
       {loops.length > 0 &&
         loops.map((loop, index) => {
           console.log('loop from top', loop);
-          if (loop.loopCompleted) {
             return <LoopInstance key={index} loop={loop} loopIndex={index} />;
-          }
         })}
     </>
   );

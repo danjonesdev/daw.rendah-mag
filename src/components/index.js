@@ -20,6 +20,13 @@ function Components(props) {
     store.set("functions")(props.store.functions);
   }, []);
 
+  // const handleDebug = () => {
+//   console.log("settings", settings);
+//   console.log("loops", loops);
+//   console.log("cueLoop", cueLoop);
+//   console.log("functions", functions);
+// };
+
   const isObject = e => {
     return typeof e === "object" && e !== null;
   };
@@ -43,6 +50,14 @@ function Components(props) {
         <div className="col-6">
           <Settings />
         </div>
+        {/*
+          <p
+            className="fixed  top  left  pa2  bg-black  white  z9"
+            onClick={handleDebug}
+          >
+            Debug
+          </p>
+        */}
       </div>
     );
   }
