@@ -82,7 +82,7 @@ function Loop(props) {
     }
   };
 
-  if (sample && sound) {
+  if (sample && sound && loop.loopCompleted) {
     handleSample();
     return false;
   }

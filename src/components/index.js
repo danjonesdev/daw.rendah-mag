@@ -20,6 +20,13 @@ function Components(props) {
     store.set("functions")(props.store.functions);
   }, []);
 
+  // const handleDebug = () => {
+//   console.log("settings", settings);
+//   console.log("loops", loops);
+//   console.log("cueLoop", cueLoop);
+//   console.log("functions", functions);
+// };
+
   const isObject = e => {
     return typeof e === "object" && e !== null;
   };

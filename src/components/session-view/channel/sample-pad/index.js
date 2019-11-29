@@ -63,8 +63,7 @@ function Channel(props) {
   };
 
   const handleClick = () => {
-    const loopsNew = loops;
-
+    const newLoops = loops;
     // sample.stop();
     sample.play();
 
@@ -81,7 +80,7 @@ function Channel(props) {
       };
 
       // check if first loop
-      if (!loopsNew.length) {
+      if (!newLoops.length) {
         // if first loop, create loop object + push sample hit to object timeline
         const loopInstance = {
           active: true,
@@ -92,13 +91,13 @@ function Channel(props) {
           timeline: [sampleHitInstance]
         };
 
-        loopsNew.push(loopInstance);
+        newLoops.push(loopInstance);
         return;
       }
 
       // if not first loop, check if last loopCompleted is true,
       // if true, create new instance, else push sample hit to object timelime
-      if (loopsNew[loops.length - 1].loopCompleted) {
+      if (newLoops[loops.length - 1].loopCompleted) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
@@ -108,14 +107,14 @@ function Channel(props) {
           timeline: [sampleHitInstance]
         };
 
-        loopsNew.push(loopInstance);
+        newLoops.push(loopInstance);
         return;
       } else {
-        loopsNew[loops.length - 1].timeline.push(sampleHitInstance);
+        newLoops[loops.length - 1].timeline.push(sampleHitInstance);
       }
     }
 
-    store.set("loops")(loopsNew);
+    store.set('loops')(newLoops);
   };
 
   if (sample) {
