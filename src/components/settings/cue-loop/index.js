@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import LoopInstance from "./loop-instance";
-import Loopmanager from "./loop-manager";
 
 import Store from "../../../store";
 import mutateObject from "../../../helpers/mutate-object";
@@ -55,22 +54,15 @@ function CueLoop(props) {
 
   return (
     <>
-      <div className="col-12  flex  align-center  justify-center  h-100">
         <div
           onClick={() => {handleLoopToggle('Click')}}
-          className="flex  flex-wrap  align-center  justify-center  cue-loop__item"
+          className="flex  align-center  justify-center  cue-loop__item"
         >
           Cue Loop {`${cueLoop.isLooping}`}
         </div>
-      </div>
-
-      <div className="col-12  pa2">
-        <Loopmanager loops={loops} />
-      </div>
 
       {loops.length > 0 &&
         loops.map((loop, index) => {
-          console.log('loop from top', loop);
             return <LoopInstance key={index} loop={loop} loopIndex={index} />;
         })}
     </>

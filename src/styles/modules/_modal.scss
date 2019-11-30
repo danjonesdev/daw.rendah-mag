@@ -1,35 +1,51 @@
 // Modal
 
+.modal-wrapper {
+  transition: all .3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0;
+visibility: hidden;
+}
+
+.modal-wrapper.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
 .modal {
-  position: relative;
-  transition: all 0.4s ease-in-out;
-  position: absolute;
+  transition: all .3s ease-in-out;
   height: 300px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  background: white;
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  bottom: -300px;
-  @extend .shadow3;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+  top: 150px;
+  opacity: 0;
 }
 
 .modal.primary {
-  width: 100%;
+  width: 80%;
 }
 
 .modal.secondary {
   width: 70%;
 }
 
-.modal.primary.is-active {
-  bottom: 0;
-}
-
-.modal.secondary.is-active {
-  bottom: 0;
+.modal.is-active {
+  opacity: 1;
+  visibility: visible;
+  top: 0;
 }
 
 .modal__header__close {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function Modal(props) {
   return (
+    <div className={`modal-wrapper  ${props.type} ${props.isActive ? "is-active" : ""}`}>
     <div
       className={`modal  ${props.type} ${props.isActive ? "is-active" : ""}`}
     >
@@ -15,6 +16,7 @@ function Modal(props) {
         <h2 className="tac  mla  mra  pt3  black">{props.title}</h2>
       </div>
       <div className="modal__body">{props.children}</div>
+      </div>
     </div>
   );
 }

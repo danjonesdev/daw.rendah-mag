@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
+import Store from "../../../store";
+
 import Loop from "./loop";
-import Modal from "../../../modal";
+import Modal from "../../modal";
 
 function LoopManager(props) {
-  const [loops] = useState(props.loops);
+  const store = Store.useStore();
+  const loops = store.get("loops");
+
   const [modalActive, setModalActive] = useState(false);
   const hasLooped = loops.length && loops[loops.length - 1].loopCompleted;
 
@@ -14,24 +18,21 @@ function LoopManager(props) {
 
   const loopManagerButton = () => {
     return (
-      <div
-        className="flex  flex-wrap  align-center  justify-center"
-        onClick={hasLooped ? toggleModal : null}
-      >
-        <p
-          className={`bg-black  white  pa2  w-100  f7  shadow2   cp ${
+
+        <div
+           onClick={hasLooped ? toggleModal : null}
+          className={`flex  align-center  justify-center  cue-loop__item ${
             hasLooped ? "" : "o-50"
           }`}
         >
           Loop Manager
-        </p>
-      </div>
+        </div>
     );
   };
 
   if (hasLooped) {
     return (
-      <div className="col-24">
+      <>
         {loopManagerButton()}
 
         <Modal
@@ -46,7 +47,7 @@ function LoopManager(props) {
             })}
           </div>
         </Modal>
-      </div>
+      </>
     );
   }
 

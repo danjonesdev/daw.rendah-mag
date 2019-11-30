@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Store from "../../../../../store";
+import Store from "../../../../store";
 
-import mutateObject from "../../../../../helpers/mutate-object";
+import mutateObject from "../../../../helpers/mutate-object";
 
 function LoopManager(props) {
   const [loop] = useState(props.loop);

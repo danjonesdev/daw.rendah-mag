@@ -8,9 +8,7 @@ function LoopInstance(props) {
 
 
   return (
-    <div className="col-24">
-      <div className="flex  flex-wrap  align-center  justify-center  h-100">
-        {props.loop.timeline.length > 0 &&
+        props.loop.timeline.length > 0 &&
           props.loop.timeline.map((sample, index) => {
             return (
               <TimelineItem
@@ -21,9 +19,7 @@ function LoopInstance(props) {
                 sampleIndex={index}
               />
             );
-          })}
-      </div>
-    </div>
+          })
   );
 }
 

@@ -1,17 +1,30 @@
+// Settings
+
+.settings-wrapper {
+  height: 100vh;
+  width: 100%;
+}
+
+.settings {
+  height: calc(100%);
+  width: calc(100% - 10px);
+  @extend .shadow3;
+}
+
 // Cue Loop
 
 .cue-loop-wrapper {
   height: 20vh;
-  width: 100%;
+  width: calc(100% - 10px);
 }
 
 .cue-loop {
-  height: calc(100% - 10px);
+  height: 100%;
   width: calc(100% - 10px);
 }
 
 .cue-loop__item {
-  height: calc(100% - 10px);
+  height: calc(100% - 20px);
   width: calc(100% - 10px);
   border-radius: 5px;
   background: black;
