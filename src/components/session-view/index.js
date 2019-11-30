@@ -1,5 +1,6 @@
 import React from "react";
-import Channel from "./channel";
+import SamplePad from "./sample-pad";
+
 import Store from "../../store";
 
 function SessionView() {
@@ -8,10 +9,22 @@ function SessionView() {
 
   if (settings.categories) {
     return (
-      <div className="w-100  flex  flex-wrap  session-view">
-        {settings.categories.map((item, index) => {
-          return <Channel key={index} {...item} />
-        })}
+      <div className="w-100  flex  align-center  justify-center  session-view-wrapper">
+        <div className="w-100  flex  align-center  justify-center  session-view">
+          {settings.categories.map((category, categoryIndex) => {
+            return (
+              <div className="col-6  flex  flex-wrap  content-start  h-100">
+                {category.samples.map((sample, sampleIndex) => {
+                  if (sample.active) {
+                    return (
+                        <SamplePad key={`${categoryIndex}-${sampleIndex}`} {...sample} />
+                    )
+                  }
+                })}
+              </div>
+            )
+          })}
+        </div>
       </div>
     );
   }

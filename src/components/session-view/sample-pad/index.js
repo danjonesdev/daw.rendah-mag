@@ -3,8 +3,8 @@ import Wad from "web-audio-daw";
 import isEqual from "lodash/isEqual";
 import last from "lodash/last";
 
-import Store from "../../../../store";
-import mutateObject from "../../../../helpers/mutate-object";
+import Store from "../../../store";
+import mutateObject from "../../../helpers/mutate-object";
 
 // const useCompare = (val: any) => {
 //     const prevVal = usePrevious(val)
@@ -119,16 +119,14 @@ function Channel(props) {
 
   if (sample) {
     return (
-      <div className="col-24  session-view__channel__pad-wrapper">
         <div
-          className="col-24  session-view__channel__pad"
+          className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
           onClick={handleClick}
         >
-          <div className="flex  flex-wrap  align-center  justify-center  h-100">
+          <div className="  flex  align-center  justify-center  session-view__channel__item">
             sample {props.name}
           </div>
         </div>
-      </div>
     );
   }
 

@@ -47,7 +47,7 @@ function Components(props) {
     console.log("render");
     return (
       <div className="flex">
-        <div className="col-18  session__track-bar">
+        <div className="col-16  session__track-bar">
           <div className="flex">
             <SessionView />
           </div>
@@ -55,7 +55,7 @@ function Components(props) {
             <TrackBar />
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-8">
           <Settings />
         </div>
         {/*

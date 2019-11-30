@@ -1,26 +1,26 @@
 // Session View
 
-.session-view {
+.session-view-wrapper {
+  height: 80vh;
+  width: 100%;
   outline: 1px solid black;
-  height: 80vh;
-  padding: 4px;
 }
 
-.session-view__channel {
-  height: 80vh;
+.session-view {
+  height: calc(80vh - 10px);
+  width: calc(100% - 10px);
 }
 
-// Session View Pad
-
-.session-view__channel__pad-wrapper {
+.session-view__channel__item-wrapper {
   height: 20vh;
-  padding: 4px;
+  width: 100%;
 }
 
-.session-view__channel__pad {
+.session-view__channel__item {
+  height: calc(20vh - 10px);
+  width: calc(100% - 10px);
   border-radius: 5px;
   background: white;
-  height: 100%;
   @extend .tac;
-  @extend .shadow2;
+  @extend .shadow3;
 }

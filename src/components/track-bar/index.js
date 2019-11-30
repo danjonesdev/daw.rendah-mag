@@ -7,10 +7,12 @@ function SessionView() {
   const settings = store.get('settings');
 
   return (
-    <div className="w-100  flex  flex-wrap  track-bar">
+    <div className="w-100  flex  align-center  justify-center  track-bar-wrapper">
+    <div className="w-100  flex  align-center  justify-center  track-bar">
       {settings.categories.map((item, index) => {
         return <ChannelManager key={index} {...item} />;
       })}
+    </div>
     </div>
   );
 }
