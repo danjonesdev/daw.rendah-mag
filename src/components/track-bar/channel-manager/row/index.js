@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import Store from "../../../../store";
 
-import Modal from "../../../modal";
 import Effects from "./effetcs";
 
 import mutateObject from "../../../../helpers/mutate-object";
 
 function Row(props) {
-  const [modalActive, setModalActive] = useState(false);
 
-  const toggleModal = () => {
-    setModalActive(!modalActive);
-  };
+
 
   const store = Store.useStore();
 
@@ -44,28 +40,14 @@ function Row(props) {
         <p className="black  pl2">{props.sample.name}</p>
       </div>
       <div className="col-10  flex  flex-wrap">
-        <p
-          className="bg-black  white  pa2  dib  f7  shadow2   cp"
-          onClick={toggleModal}
-        >
-          Effects
-        </p>
         {props.sample.effects &&
           props.sample.effects.map((effect, index) => {
             return (
-              <Modal
-                key={index}
-                title={`${props.sample.name} Effects`}
-                type="secondary"
-                isActive={modalActive}
-                toggleModal={toggleModal}
-              >
                 <Effects
                   channel={props.channel}
                   sample={props.sample}
                   effect={effect}
                 />
-              </Modal>
             );
           })}
       </div>

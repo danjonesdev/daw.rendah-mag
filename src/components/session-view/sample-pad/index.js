@@ -40,26 +40,29 @@ function Channel(props) {
   }, [props]);
 
   const handleEffects = () => {
+    const effectobject = {}
+
     var i;
     for (i = 0; i < props.effects.length; i++) {
       const effect = props.effects[i];
-      const propertyArray = {};
+      const propertyObject = {};
 
       for (let key in effect.properties) {
-        if (effect.properties.hasOwnProperty(key)) {
-          if (key !== "_unique") {
-            propertyArray[key] = effect.properties[key] / 10;
-          }
-        }
+        const property = effect.properties[key];
+            propertyObject[property.name] = property.val;
       }
 
-      const wadSample = new Wad({
-        source: props.file,
-        [effect.name]: propertyArray
-      });
 
-      setSample(wadSample);
+      effectobject[effect.name] = propertyObject;
     }
+
+
+          const wadSample = new Wad({
+            source: props.file,
+            tuna: effectobject
+          });
+
+          setSample(wadSample);
   };
 
   const handleClick = () => {

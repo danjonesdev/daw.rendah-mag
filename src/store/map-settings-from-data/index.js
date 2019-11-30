@@ -47,15 +47,90 @@ const mapSamples = data => {
             .replace("-wav", ".wav"),
           effects: [
             {
-              _unique: 236472,
-              name: "delay",
+              _unique:  randomKey(),
+              name: "Chorus",
               test: 1,
-              properties: {
-                _unique: 236472,
-                delayTime: 0,
-                wet: 0,
-                feedback: 0
-              }
+              properties: [
+                {
+                  _unique:  randomKey(),
+                  name: 'rate',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 8,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'feedback',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'delay',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'bypass',
+                  canModify: false,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+              ]
+            },
+            {
+              _unique:  randomKey(),
+              name: "Overdrive",
+              test: 1,
+              properties: [
+                {
+                  _unique:  randomKey(),
+                  name: 'outputGain',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'drive',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'curveAmount',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'algorithmIndex',
+                  canModify: true,
+                  minVal: 0,
+                  maxVal: 5,
+                  val: 0,
+                },
+                {
+                  _unique:  randomKey(),
+                  name: 'bypass',
+                  canModify: false,
+                  minVal: 0,
+                  maxVal: 1,
+                  val: 0,
+                },
+              ]
             }
           ]
         };

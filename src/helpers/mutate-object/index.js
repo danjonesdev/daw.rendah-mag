@@ -2,13 +2,11 @@ import reverse from "lodash/reverse";
 import isEqual from "lodash/isEqual";
 
 const mutateObject = (origin, object, property, value) => {
-  console.log("mutate", origin, object);
   const gObj = object;
   let foundObject;
   let indexMap = [];
 
   function findByProperty(o, findValue) {
-    console.log("findByProperty", o, findValue);
     if (o[`${property}`] === findValue) {
       if (isEqual(gObj, o)) {
         return o;
@@ -18,8 +16,6 @@ const mutateObject = (origin, object, property, value) => {
     let result, p;
     for (p in o) {
       if (o.hasOwnProperty(p) && typeof o[p] === "object") {
-        console.log("o, p", o, p);
-        console.log("findByProperty - 2 -", o[p], findValue);
         result = findByProperty(o[p], findValue);
 
         if (result) {
@@ -44,14 +40,14 @@ const mutateObject = (origin, object, property, value) => {
     }
   }
 
-  console.log("findByProperty - 1 -", origin, gObj[property]);
+  // console.log("findByProperty - 1 -", origin, gObj[property]);
   findByProperty(origin, gObj[property]);
 
   const keys = reverse(indexMap);
   const mutatedSource = isObejctMatch(origin, keys);
 
   // console.log('keys', keys);
-  console.log("mutatedSource", mutatedSource);
+  // console.log("mutatedSource", mutatedSource);
 
   return mutatedSource;
 };
