@@ -56,7 +56,9 @@ function Components(props) {
           </div>
         </div>
         <div className="col-8">
-          <Settings />
+          <div className="flex">
+            <Settings />
+          </div>
         </div>
         {/*
           <p

@@ -1,0 +1,21 @@
+// Cue Loop
+
+.cue-loop-wrapper {
+  height: 20vh;
+  width: 100%;
+}
+
+.cue-loop {
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+}
+
+.cue-loop__item {
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+  border-radius: 5px;
+  background: black;
+  color: white;
+  @extend .tac;
+  @extend .shadow3;
+}

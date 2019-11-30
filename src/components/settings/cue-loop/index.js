@@ -53,20 +53,16 @@ function CueLoop(props) {
     store.set("loops")(loopsNew);
   };
 
-  const cueButton = () => {
-    return (
-      <p
-        onClick={() => {handleLoopToggle('Click')}}
-        className="bg-black  white  pa2  w-100  f7  shadow2   cp"
-      >
-        Cue Loop {`${cueLoop.isLooping}`}
-      </p>
-    );
-  };
-
   return (
     <>
-      <div className="col-12  pa2">{cueButton()}</div>
+      <div className="col-12  flex  align-center  justify-center  h-100">
+        <div
+          onClick={() => {handleLoopToggle('Click')}}
+          className="flex  flex-wrap  align-center  justify-center  cue-loop__item"
+        >
+          Cue Loop {`${cueLoop.isLooping}`}
+        </div>
+      </div>
 
       <div className="col-12  pa2">
         <Loopmanager loops={loops} />
