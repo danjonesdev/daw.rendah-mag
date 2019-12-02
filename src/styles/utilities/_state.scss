@@ -11,3 +11,8 @@
   opacity: 0;
   transition: opacity 0.2s ease-in;
 }
+
+.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

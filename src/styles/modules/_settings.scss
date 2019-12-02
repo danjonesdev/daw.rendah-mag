@@ -24,11 +24,58 @@
 }
 
 .cue-loop__item {
+  position: relative;
   height: calc(100% - 20px);
   width: calc(100% - 10px);
   border-radius: 5px;
   background: black;
   color: white;
-  @extend .tac;
   @extend .shadow3;
+}
+
+.cue-loop__item__icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+}
+
+.cue-loop__item__text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  @extend .t-primary;
+  @extend .f6;
+  @extend .f5-md;
+  @extend .bold;
+}
+
+// Loop Manager
+
+.loop-manager__item {
+  position: relative;
+  height: calc(100% - 20px);
+  width: calc(100% - 10px);
+  border-radius: 5px;
+  background: black;
+  color: white;
+  @extend .shadow3;
+}
+
+.loop-manager__item__icon {
+  transition: opacity 0.3s ease-in;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+}
+
+.loop-manager__item__text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  @extend .t-primary;
+  @extend .f6;
+  @extend .f5-md;
+  @extend .bold;
 }

@@ -1,18 +1,26 @@
 // Modal
 
 .modal-wrapper {
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: rgba(0, 0, 0, 0.8);
-width: 100%;
-height: 100%;
-position: absolute;
-top: 0;
-left: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-opacity: 0;
-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-wrapper.primary {
+  z-index: 998;
+}
+
+.modal-wrapper.secondary {
+  z-index: 999;
 }
 
 .modal-wrapper.is-active {
@@ -20,26 +28,26 @@ visibility: hidden;
   visibility: visible;
 }
 
-
 .modal {
-  transition: all .3s ease-in-out;
-  height: 300px;
-	width: 500px;
-	background-color: white;
-	text-align: center;
-	padding: 20px;
-	position: relative;
-	border-radius: 4px;
-  top: 150px;
+  transition: opacity 0.3s ease-in-out, top 0.3s ease-in-out;
+  width: 500px;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  border-radius: 4px;
+  top: 20px;
   opacity: 0;
 }
 
 .modal.primary {
-  width: 80%;
+  width: 90%;
+  height: 80vh;
 }
 
 .modal.secondary {
-  width: 70%;
+  width: 80%;
+  height: 60vh;
 }
 
 .modal.is-active {
@@ -50,6 +58,12 @@ visibility: hidden;
 
 .modal__header__close {
   position: absolute;
-  top: 20px;
-  left: 15px;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+}
+
+.modal__body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }

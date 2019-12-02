@@ -40,7 +40,7 @@ function Channel(props) {
   }, [props]);
 
   const handleEffects = () => {
-    const effectobject = {}
+    const effectobject = {};
 
     var i;
     for (i = 0; i < props.effects.length; i++) {
@@ -49,20 +49,18 @@ function Channel(props) {
 
       for (let key in effect.properties) {
         const property = effect.properties[key];
-            propertyObject[property.name] = property.val;
+        propertyObject[property.name] = property.val;
       }
-
 
       effectobject[effect.name] = propertyObject;
     }
 
+    const wadSample = new Wad({
+      source: props.file,
+      tuna: effectobject
+    });
 
-          const wadSample = new Wad({
-            source: props.file,
-            tuna: effectobject
-          });
-
-          setSample(wadSample);
+    setSample(wadSample);
   };
 
   const handleClick = () => {
@@ -117,19 +115,26 @@ function Channel(props) {
       }
     }
 
-    store.set('loops')(newLoops);
+    store.set("loops")(newLoops);
   };
 
   if (sample) {
     return (
-        <div
-          className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
-          onClick={handleClick}
-        >
-          <div className="  flex  align-center  justify-center  session-view__channel__item">
-            sample {props.name}
-          </div>
+      <div
+        className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
+        onClick={handleClick}
+      >
+        <div className="  flex  align-center  justify-center  session-view__channel__item">
+          <span
+            class="session-view__channel__item__light"
+            style={{
+              backgroundColor: "grey"
+            }}
+          ></span>
+
+          <span class="session-view__channel__item__text">{props.name}</span>
         </div>
+      </div>
     );
   }
 

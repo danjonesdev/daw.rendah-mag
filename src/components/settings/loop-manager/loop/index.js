@@ -16,11 +16,13 @@ function LoopManager(props) {
   };
 
   return (
-    <div className="pv2  w-100  flex  align-center">
-      <div className="col-4">
-        <p>Loop {props.loopIndex + 1}</p>
+    <div className="col-24  flex  flex-wrap  track-bar__item__modal__row">
+      <div className="col-5  flex  align-center">
+        <p className="t-primary  f6  bold  pl2">Loop {props.loopIndex + 1}</p>
       </div>
-      <div className="col-20">
+
+      <div className="col-6  flex  align-center">
+        <span className="t-primary  f7  pr3">Active:</span>
         <label className="switch" htmlFor={`${loop.startTime}-toggle`}>
           <input
             type="checkbox"

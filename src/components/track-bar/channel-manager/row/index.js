@@ -6,9 +6,6 @@ import Effects from "./effetcs";
 import mutateObject from "../../../../helpers/mutate-object";
 
 function Row(props) {
-
-
-
   const store = Store.useStore();
 
   const toggleActive = () => {
@@ -24,7 +21,12 @@ function Row(props) {
 
   return (
     <div className="col-24  flex  flex-wrap  track-bar__item__modal__row">
-      <div className="col-2  flex  align-center">
+      <div className="col-5  flex  align-center">
+        <p className="t-primary  f6  bold  pl2">{props.sample.name}</p>
+      </div>
+
+      <div className="col-6  flex  align-center">
+        <span className="t-primary  f7  pr3">Active:</span>
         <label className="switch" htmlFor={`${props.sample.name}-toggle`}>
           <input
             type="checkbox"
@@ -36,18 +38,17 @@ function Row(props) {
           <div className="slider round"></div>
         </label>
       </div>
-      <div className="col-10  flex  align-center">
-        <p className="black  pl2">{props.sample.name}</p>
-      </div>
-      <div className="col-10  flex  flex-wrap">
+
+      <div className="col-11  flex  align-center">
+        <span className="t-primary  f7  pr3">Effects:</span>
         {props.sample.effects &&
           props.sample.effects.map((effect, index) => {
             return (
-                <Effects
-                  channel={props.channel}
-                  sample={props.sample}
-                  effect={effect}
-                />
+              <Effects
+                channel={props.channel}
+                sample={props.sample}
+                effect={effect}
+              />
             );
           })}
       </div>

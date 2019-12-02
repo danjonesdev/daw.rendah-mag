@@ -11,15 +11,24 @@
 }
 
 .track-bar__item {
+  position: relative;
   height: calc(100% - 10px);
   width: calc(100% - 10px);
   border-radius: 5px;
   background: black;
   color: white;
-  @extend .tac;
   @extend .shadow3;
 }
 
+.track-bar__item__text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  @extend .t-primary;
+  @extend .f6;
+  @extend .f5-md;
+  @extend .bold;
+}
 
 // Channel Modal Content
 

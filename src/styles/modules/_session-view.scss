@@ -16,10 +16,28 @@
 }
 
 .session-view__channel__item {
+  position: relative;
   height: calc(20vh - 10px);
   width: calc(100% - 10px);
   border-radius: 5px;
   background: white;
-  @extend .tac;
   @extend .shadow3;
+}
+
+.session-view__channel__item__light {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
+}
+
+.session-view__channel__item__text {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  @extend .t-primary;
+  @extend .f7;
+  @extend .f5-md;
 }

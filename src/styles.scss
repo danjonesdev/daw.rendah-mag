@@ -38,7 +38,7 @@ body {
 }
 
 .switch input {
-  display:none;
+  display: none;
 }
 
 .slider {
@@ -49,7 +49,7 @@ body {
   position: absolute;
   right: 0;
   top: 0;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -59,7 +59,7 @@ body {
   height: 17px;
   left: 4px;
   position: absolute;
-  transition: .4s;
+  transition: 0.4s;
   width: 20px;
 }
 
@@ -79,7 +79,36 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+//
 
+.device-orientation-message {
+  display: none;
+}
+@media only screen and (orientation: portrait) {
+  html,
+  body,
+  .App {
+    background-color: palette(black);
+  }
+  .App {
+    display: none;
+  }
+  .device-orientation-message {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+  }
+}
+@media only screen and (orientation: landscape) {
+  html,
+  body,
+  .App {
+    background-color: palette(white);
+  }
+  .device-orientation-message {
+    display: none;
+  }
+}
 
 // utilities
 // @import 'utilities/*';

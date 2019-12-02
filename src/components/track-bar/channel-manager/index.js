@@ -19,7 +19,7 @@ function ChannelManager(props) {
           className="flex  flex-wrap  align-center  justify-center  track-bar__item"
           onClick={toggleModal}
         >
-          {props.name}
+          <span className="track-bar__item__text">{props.name}</span>
         </div>
 
       <Modal

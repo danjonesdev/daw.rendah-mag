@@ -21,8 +21,8 @@ function Effects(props) {
       mutateObject(
         settings,
         props.effect.properties[i],
-        'val',
-        (e.target.value / 10)
+        "val",
+        e.target.value / 10
       )
     );
   };
@@ -38,68 +38,67 @@ function Effects(props) {
       if (property.canModify) {
         indents.push(
           <div className="col-24  flex  flex-wrap  pv1">
-            <div className="col-12">
-              {property.name}
-            </div>
+            <div className="col-12">{property.name}</div>
             <div className="col-12">
               <input
-                onChange={(e) => {handleChange(e, i)}}
+                onChange={e => {
+                  handleChange(e, i);
+                }}
                 name={property.name}
                 type="range"
-                min={(property.minVal * 10)}
-                max={(property.maxVal * 10)}
-                value={(property.val * 10)}
+                min={property.minVal * 10}
+                max={property.maxVal * 10}
+                value={property.val * 10}
               />
             </div>
           </div>
         );
       }
-
     }
 
     // for (let key in properties) {
-      // if (properties.hasOwnProperty(key)) {
-      //   if (key !== "_unique") {
-      //     indents.push(
-      //       <div key={key} className="col-24  flex  flex-wrap  pv1">
-      //         <div className="col-12">
-      //           {key} {Math.round(properties[key])}
-      //         </div>
-      //         <div className="col-12">
-      //           <input
-      //             onChange={handleChange}
-      //             name={key}
-      //             type="range"
-      //             min="0"
-      //             max="10"
-      //             value={Math.round(properties[key])}
-      //           />
-      //         </div>
-      //       </div>
-      //     );
-      //   }
-      // }
+    // if (properties.hasOwnProperty(key)) {
+    //   if (key !== "_unique") {
+    //     indents.push(
+    //       <div key={key} className="col-24  flex  flex-wrap  pv1">
+    //         <div className="col-12">
+    //           {key} {Math.round(properties[key])}
+    //         </div>
+    //         <div className="col-12">
+    //           <input
+    //             onChange={handleChange}
+    //             name={key}
+    //             type="range"
+    //             min="0"
+    //             max="10"
+    //             value={Math.round(properties[key])}
+    //           />
+    //         </div>
+    //       </div>
+    //     );
+    //   }
     // }
-    console.log('indents', indents);
+    // }
+    console.log("indents", indents);
     return <div className="flex  flex-wrap">{indents}</div>;
   };
 
   return (
     <>
-    <p
-      className="bg-black  white  pa2  dib  f7  shadow2   cp"
-      onClick={toggleModal}
-    >
-      {props.effect.name}
-    </p>
-        <Modal
-          title={props.effect.name}
-          type="secondary"
-          isActive={modalActive}
-          toggleModal={toggleModal}
-        >
+      <div
+        className="bg-black  white  f7  bold  shadow1  cp  mr2  pa2  dib"
+        onClick={toggleModal}
+      >
+        {props.effect.name}
+      </div>
+      <Modal
+        title={props.effect.name}
+        type="secondary"
+        isActive={modalActive}
+        toggleModal={toggleModal}
+      >
         <div className="col-20">{loopPorps()}</div>
-        </Modal>
+      </Modal>
     </>
   );
 }

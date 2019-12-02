@@ -1,9 +1,13 @@
+// Imports
+@import url("https://fonts.googleapis.com/css?family=Play:400,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
 // typography
 
-$system-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-  'Ubuntu', 'Roboto', 'Noto', 'Segoe Ui', Arial, sans-serif;
-$helvetica: 'Helvetica Neue', Helvetica, sans-serif;
-$mono: 'Consolas', 'Menlo', 'Monaco', 'Lucida Console', monospace;
+$system-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+  "Ubuntu", "Roboto", "Noto", "Segoe Ui", Arial, sans-serif;
+$helvetica: "Helvetica Neue", Helvetica, sans-serif;
+$mono: "Consolas", "Menlo", "Monaco", "Lucida Console", monospace;
 $sans: sans-serif;
 $serif: serif;
 
@@ -13,6 +17,9 @@ $typography-base-weight: 400 !default;
 $typography-title: $system-sans !default;
 $typography-body: $system-sans !default;
 $typography-input: $system-sans !default;
+
+$t-primary: "Play", sans-serif !default;
+$t-secondary: "Roboto", sans-serif !default;
 
 $type-scale: (
   f-headline: 6rem,
