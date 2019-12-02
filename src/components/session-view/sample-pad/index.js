@@ -24,6 +24,7 @@ import mutateObject from "../../../helpers/mutate-object";
 function Channel(props) {
   const [sample, setSample] = useState(null);
   const [error, setError] = useState(false);
+  const [touching, setTouching] = useState(false)
 
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
@@ -34,7 +35,13 @@ function Channel(props) {
     if (props.effects && props.effects.length) {
       handleEffects();
     } else {
-      const wadSample = new Wad({ source: props.file });
+      const wadSample = new Wad({ source: props.file,   env     : {
+          attack  : 0.0,
+          decay   : 0.0,
+          sustain : 1.0,
+          hold    : -1.0,
+          release : 2
+      } });
       setSample(wadSample);
     }
   }, [props]);
@@ -55,18 +62,29 @@ function Channel(props) {
       effectobject[effect.name] = propertyObject;
     }
 
-    const wadSample = new Wad({
+    const wadSample = new Wad(
+      {
       source: props.file,
+      env     : {
+        attack  : 0.0,
+        decay   : 0.0,
+        sustain : 1.0,
+        hold    : -1.0,
+        release : 2
+    },
       tuna: effectobject
     });
 
     setSample(wadSample);
   };
 
-  const handleClick = () => {
+  const handleTouchEnd = () => {
     const newLoops = loops;
-    // sample.stop();
-    sample.play();
+
+
+    sample.stop();
+    setTouching(false);
+
 
     // if looping
     if (cueLoop.isLooping) {
@@ -116,15 +134,27 @@ function Channel(props) {
     }
 
     store.set("loops")(newLoops);
+  }
+
+  const handleTouchStart = () => {
+    // sample.stop();
+    sample.play();
+    setTouching(true);
+
+
   };
 
   if (sample) {
     return (
       <div
+
         className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
-        onClick={handleClick}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        <div className="  flex  align-center  justify-center  session-view__channel__item">
+        <div
+          style={{backgroundColor: (touching ? 'red' : 'white')}}
+           className="  flex  align-center  justify-center  session-view__channel__item">
           <span
             class="session-view__channel__item__light"
             style={{
@@ -132,7 +162,7 @@ function Channel(props) {
             }}
           ></span>
 
-          <span class="session-view__channel__item__text">{props.name}</span>
+        <span class="session-view__channel__item__text">{props.name}</span>
         </div>
       </div>
     );

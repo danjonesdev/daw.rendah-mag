@@ -16,6 +16,7 @@
 }
 
 .session-view__channel__item {
+  transition: background-color .1s ease-out;
   position: relative;
   height: calc(20vh - 10px);
   width: calc(100% - 10px);
