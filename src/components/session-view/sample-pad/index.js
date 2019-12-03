@@ -144,7 +144,6 @@ function Channel(props) {
   };
 
   if (sample) {
-    console.log("cat");
     return (
       <div
         className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
@@ -166,7 +165,9 @@ function Channel(props) {
             }}
           />
 
-          <span class="session-view__channel__item__text">{props.name}</span>
+          <span class="pr3  session-view__channel__item__text">
+            {props.name}
+          </span>
         </div>
       </div>
     );

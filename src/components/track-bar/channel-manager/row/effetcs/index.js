@@ -79,7 +79,6 @@ function Effects(props) {
     //   }
     // }
     // }
-    console.log("indents", indents);
     return <div className="flex  flex-wrap">{indents}</div>;
   };
 

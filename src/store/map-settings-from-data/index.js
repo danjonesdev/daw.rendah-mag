@@ -161,7 +161,8 @@ export const mapSettingsFromData = data => {
     _key: randomKey(),
     isLooping: false,
     loopTime: null,
-    loopRestarted: null
+    loopRestarted: null,
+    bpm: null
   };
 
   // Functions

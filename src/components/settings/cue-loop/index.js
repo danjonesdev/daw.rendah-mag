@@ -34,9 +34,19 @@ function CueLoop(props) {
     // Toggle looping
     cueLoopNew.isLooping = !cueLoopNew.isLooping;
 
-    // If first loop, set master loop time
+    // If first loop
     if (loopsNew.length === 1 && !cueLoopNew.isLooping) {
+      // Set master loop
       cueLoopNew.loopTime = performance.now() - loopsNew[0].startTime;
+
+      // Set BPM
+      const quarterNote = cueLoopNew.loopTime / 4;
+      const bpmRound = Math.round(60000 / quarterNote);
+      let bpm = null;
+      if (bpmRound < 100) bpm = bpmRound * 2;
+      if (bpmRound > 200) bpm = bpmRound / 2;
+      cueLoopNew.bpm = bpm;
+
       setInterval(() => {
         // Log restart of loop
         cueLoopNew.loopRestarted = performance.now();

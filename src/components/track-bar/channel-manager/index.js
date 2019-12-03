@@ -14,13 +14,13 @@ function ChannelManager(props) {
   };
 
   return (
-    <div className="col-6  flex  align-center  justify-center  h-100">
-        <div
-          className="flex  flex-wrap  align-center  justify-center  track-bar__item"
-          onClick={toggleModal}
-        >
-          <span className="track-bar__item__text">{props.name}</span>
-        </div>
+    <div className="col-4  flex  align-center  justify-center  h-100">
+      <div
+        className="flex  flex-wrap  align-center  justify-center  track-bar__item"
+        onClick={toggleModal}
+      >
+        <span className="track-bar__item__text">{props.name}</span>
+      </div>
 
       <Modal
         title="Channel Manager"
