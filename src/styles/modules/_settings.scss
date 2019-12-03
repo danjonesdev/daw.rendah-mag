@@ -6,9 +6,10 @@
 }
 
 .settings {
-  height: calc(100%);
-  width: calc(100% - 10px);
-  @extend .shadow3;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid palette(light-grey);
+  // @extend .shadow3;
 }
 
 // Cue Loop
@@ -28,9 +29,9 @@
   height: calc(100% - 20px);
   width: calc(100% - 10px);
   border-radius: 5px;
-  background: black;
+  background: palette(black);
   color: white;
-  @extend .shadow3;
+  @extend .shadow2;
 }
 
 .cue-loop__item__icon {
@@ -38,6 +39,35 @@
   top: 8px;
   left: 8px;
   width: 18px;
+}
+
+.cue-loop__item__recording * {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  animation-name: cue-loop__item--looping;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.cue-loop__item__recording--circle svg {
+  width: 17px;
+}
+
+.cue-loop__item__recording--lock svg {
+  width: 15px;
+}
+
+@keyframes cue-loop__item--looping {
+  from {
+    fill: palette(black);
+  }
+  to {
+    fill: palette(rendah-red);
+  }
 }
 
 .cue-loop__item__text {
@@ -78,4 +108,55 @@
   @extend .f6;
   @extend .f5-md;
   @extend .bold;
+}
+
+// Metronome
+
+.metronome {
+  @extend .mla;
+  @extend .mra;
+  @extend .w-90;
+  @extend .bg-silver;
+}
+
+.metronome__casing {
+  position: relative;
+  width: 100%;
+  height: 8px;
+}
+
+.metronome__progress {
+  width: 25%;
+  height: 8px;
+  background-color: palette(rendah-red);
+  animation: metronome steps(4) infinite;
+}
+
+.metronome__seperator {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 8px;
+  background: white;
+}
+
+.metronome__seperator--1 {
+  left: calc(25% - 3px);
+}
+
+.metronome__seperator--2 {
+  left: calc(50% - 3px);
+}
+
+.metronome__seperator--3 {
+  left: calc(75% - 3px);
+}
+
+@keyframes metronome {
+  from {
+    width: 25%;
+  }
+  to {
+    width: 125%;
+  }
 }

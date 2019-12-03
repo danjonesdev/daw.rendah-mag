@@ -156,7 +156,9 @@ function Channel(props) {
               ? lightenDarkenColor(props.category.color, 90)
               : "#FFFFFF"
           }}
-          className="  flex  align-center  justify-center  session-view__channel__item"
+          className={`flex  align-center  justify-center  session-view__channel__item  ${
+            touching ? "session-view__channel__item--touching" : ""
+          }`}
         >
           <span
             class="session-view__channel__item__light"
