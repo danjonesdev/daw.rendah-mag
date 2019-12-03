@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import Div100vh from 'react-div-100vh'
 
 import Store from "./store";
 import Components from "./components";
@@ -90,7 +91,7 @@ function App() {
 
   if (data.length) {
     return (
-      <>
+      <Div100vh>
         <div className="App">
           <Store.Container>
             <Components store={mapSettingsFromData(data)} />
@@ -123,7 +124,7 @@ function App() {
             </span>
           </div>
         </div>
-      </>
+      </Div100vh>
     );
   }
 
