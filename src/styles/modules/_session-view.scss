@@ -2,23 +2,27 @@
 
 .session-view-wrapper {
   height: vh(80);
+  @extend .vh-transition;
   width: 100%;
 }
 
 .session-view {
-  height: vh(80);
+  height: 100%;
+  @extend .vh-transition;
   width: calc(100% - 10px);
 }
 
 .session-view__channel__item-wrapper {
   height: vh(20);
+  @extend .vh-transition;
   width: 100%;
 }
 
 .session-view__channel__item {
   transition: background-color 1.5s ease-out;
   position: relative;
-  height: vh(20);
+  height: calc(100% - 10px);
+  @extend .vh-transition;
   width: calc(100% - 10px);
   border-radius: 5px;
   background: white;

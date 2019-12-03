@@ -2,6 +2,7 @@
 
 .track-bar-wrapper {
   height: vh(20);
+  @extend .vh-transition;
   width: 100%;
 }
 
