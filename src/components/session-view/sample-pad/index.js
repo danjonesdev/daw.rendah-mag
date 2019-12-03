@@ -38,13 +38,13 @@ function Channel(props) {
     } else {
       const wadSample = new Wad({
         source: props.file,
-        env: {
-          attack: 0.0,
-          decay: 0.0,
-          sustain: 1.0,
-          hold: -1.0,
-          release: 2
-        }
+        // env: {
+        //   attack: 0.0,
+        //   decay: 0.0,
+        //   sustain: 1.0,
+        //   hold: -1.0,
+        //   release: 2
+        // }
       });
       setSample(wadSample);
     }
@@ -68,14 +68,14 @@ function Channel(props) {
 
     const wadSample = new Wad({
       source: props.file,
-      env: {
-        attack: 0.0,
-        decay: 0.0,
-        sustain: 1.0,
-        hold: -1.0,
-        release: 2
-      },
-      tuna: effectobject
+      // env: {
+      //   attack: 0.0,
+      //   decay: 0.0,
+      //   sustain: 1.0,
+      //   hold: -1.0,
+      //   release: 2
+      // },
+      // tuna: effectobject
     });
 
     setSample(wadSample);
@@ -84,7 +84,7 @@ function Channel(props) {
   const handleTouchEnd = () => {
     const newLoops = loops;
 
-    sample.stop();
+    // sample.stop();
     setTouching(false);
 
     // if looping
