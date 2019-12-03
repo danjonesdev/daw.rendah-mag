@@ -84,7 +84,7 @@ function Channel(props) {
   const handleTouchEnd = () => {
     const newLoops = loops;
 
-    // sample.stop();
+    sample.stop();
     setTouching(false);
 
     // if looping
