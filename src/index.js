@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Div100vh from 'react-div-100vh'
 
 import Store from "./store";
 import Components from "./components";
@@ -13,6 +12,21 @@ import { mapSettingsFromData } from "./store/map-settings-from-data";
 function App() {
   const [isFetching, setFetching] = useState(false);
   const [data, setData] = useState([]);
+
+  function setDocHeight() {
+document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
+};
+
+window.addEventListener('resize', function () {
+  console.log('resize');
+setDocHeight();
+});
+window.addEventListener('orientationchange', function () {
+  console.log('orientation');
+setDocHeight();
+});
+
+setDocHeight();
 
   const fetchData = async () => {
     const params = {
@@ -91,7 +105,7 @@ function App() {
 
   if (data.length) {
     return (
-      <Div100vh>
+      <>
         <div className="App">
           <Store.Container>
             <Components store={mapSettingsFromData(data)} />
@@ -124,7 +138,7 @@ function App() {
             </span>
           </div>
         </div>
-      </Div100vh>
+      </>
     );
   }
 
