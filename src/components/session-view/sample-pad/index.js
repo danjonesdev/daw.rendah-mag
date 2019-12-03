@@ -5,6 +5,7 @@ import last from "lodash/last";
 
 import Store from "../../../store";
 import mutateObject from "../../../helpers/mutate-object";
+import lightenDarkenColor from "../../../helpers/lighten-darken-color";
 
 // const useCompare = (val: any) => {
 //     const prevVal = usePrevious(val)
@@ -24,7 +25,7 @@ import mutateObject from "../../../helpers/mutate-object";
 function Channel(props) {
   const [sample, setSample] = useState(null);
   const [error, setError] = useState(false);
-  const [touching, setTouching] = useState(false)
+  const [touching, setTouching] = useState(false);
 
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
@@ -35,13 +36,16 @@ function Channel(props) {
     if (props.effects && props.effects.length) {
       handleEffects();
     } else {
-      const wadSample = new Wad({ source: props.file,   env     : {
-          attack  : 0.0,
-          decay   : 0.0,
-          sustain : 1.0,
-          hold    : -1.0,
-          release : 2
-      } });
+      const wadSample = new Wad({
+        source: props.file,
+        env: {
+          attack: 0.0,
+          decay: 0.0,
+          sustain: 1.0,
+          hold: -1.0,
+          release: 2
+        }
+      });
       setSample(wadSample);
     }
   }, [props]);
@@ -62,16 +66,15 @@ function Channel(props) {
       effectobject[effect.name] = propertyObject;
     }
 
-    const wadSample = new Wad(
-      {
+    const wadSample = new Wad({
       source: props.file,
-      env     : {
-        attack  : 0.0,
-        decay   : 0.0,
-        sustain : 1.0,
-        hold    : -1.0,
-        release : 2
-    },
+      env: {
+        attack: 0.0,
+        decay: 0.0,
+        sustain: 1.0,
+        hold: -1.0,
+        release: 2
+      },
       tuna: effectobject
     });
 
@@ -81,10 +84,8 @@ function Channel(props) {
   const handleTouchEnd = () => {
     const newLoops = loops;
 
-
     sample.stop();
     setTouching(false);
-
 
     // if looping
     if (cueLoop.isLooping) {
@@ -134,35 +135,38 @@ function Channel(props) {
     }
 
     store.set("loops")(newLoops);
-  }
+  };
 
   const handleTouchStart = () => {
     // sample.stop();
     sample.play();
     setTouching(true);
-
-
   };
 
   if (sample) {
+    console.log("cat");
     return (
       <div
-
         className="col-24  flex  align-center  justify-center  session-view__channel__item-wrapper"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          style={{backgroundColor: (touching ? 'red' : 'white')}}
-           className="  flex  align-center  justify-center  session-view__channel__item">
+          style={{
+            backgroundColor: touching
+              ? lightenDarkenColor(props.category.color, 90)
+              : "#FFFFFF"
+          }}
+          className="  flex  align-center  justify-center  session-view__channel__item"
+        >
           <span
             class="session-view__channel__item__light"
             style={{
-              backgroundColor: "grey"
+              backgroundColor: props.category.color || "#000000"
             }}
-          ></span>
+          />
 
-        <span class="session-view__channel__item__text">{props.name}</span>
+          <span class="session-view__channel__item__text">{props.name}</span>
         </div>
       </div>
     );

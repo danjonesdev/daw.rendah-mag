@@ -22,6 +22,7 @@ function App() {
       *[_type == "category"] {
         "slug": slug.current,
         "name": title,
+        "color": color
       }
     `;
 
@@ -48,6 +49,7 @@ function App() {
             const category = {
               slug: sanityCategories[i].slug,
               name: sanityCategories[i].name,
+              color: sanityCategories[i].color,
               packs: null
             };
 

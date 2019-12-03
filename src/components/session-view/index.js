@@ -17,12 +17,16 @@ function SessionView() {
                 {category.samples.map((sample, sampleIndex) => {
                   if (sample.active) {
                     return (
-                        <SamplePad key={`${categoryIndex}-${sampleIndex}`} {...sample} />
-                    )
+                      <SamplePad
+                        category={category}
+                        key={`${categoryIndex}-${sampleIndex}`}
+                        {...sample}
+                      />
+                    );
                   }
                 })}
               </div>
-            )
+            );
           })}
         </div>
       </div>

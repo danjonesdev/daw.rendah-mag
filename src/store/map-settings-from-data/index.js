@@ -17,11 +17,13 @@ const mapSamples = data => {
   // Loop Categories
   for (var i = 0; i < data.length; i++) {
     const currentCategory = data[i];
+    console.log("currentCategory", currentCategory);
 
     const category = {
       _key: randomKey(),
       slug: currentCategory.slug,
       name: currentCategory.name,
+      color: currentCategory.color,
       samples: []
     };
 
@@ -42,94 +44,97 @@ const mapSamples = data => {
           pack: currentPack.name,
           active: true,
           file: currentSample.file.asset._ref
-            .replace("file-", "https://cdn.sanity.io/files/d5o9qdi6/production/")
+            .replace(
+              "file-",
+              "https://cdn.sanity.io/files/d5o9qdi6/production/"
+            )
             .replace("-mp3", ".mp3")
             .replace("-wav", ".wav"),
           effects: [
             {
-              _unique:  randomKey(),
+              _unique: randomKey(),
               name: "Chorus",
               test: 1,
               properties: [
                 {
-                  _unique:  randomKey(),
-                  name: 'rate',
+                  _unique: randomKey(),
+                  name: "rate",
                   canModify: true,
                   minVal: 0,
                   maxVal: 8,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'feedback',
+                  _unique: randomKey(),
+                  name: "feedback",
                   canModify: true,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'delay',
+                  _unique: randomKey(),
+                  name: "delay",
                   canModify: true,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'bypass',
+                  _unique: randomKey(),
+                  name: "bypass",
                   canModify: false,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
-                },
+                  val: 0
+                }
               ]
             },
             {
-              _unique:  randomKey(),
+              _unique: randomKey(),
               name: "Overdrive",
               test: 1,
               properties: [
                 {
-                  _unique:  randomKey(),
-                  name: 'outputGain',
+                  _unique: randomKey(),
+                  name: "outputGain",
                   canModify: true,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'drive',
+                  _unique: randomKey(),
+                  name: "drive",
                   canModify: true,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'curveAmount',
+                  _unique: randomKey(),
+                  name: "curveAmount",
                   canModify: true,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'algorithmIndex',
+                  _unique: randomKey(),
+                  name: "algorithmIndex",
                   canModify: true,
                   minVal: 0,
                   maxVal: 5,
-                  val: 0,
+                  val: 0
                 },
                 {
-                  _unique:  randomKey(),
-                  name: 'bypass',
+                  _unique: randomKey(),
+                  name: "bypass",
                   canModify: false,
                   minVal: 0,
                   maxVal: 1,
-                  val: 0,
-                },
+                  val: 0
+                }
               ]
             }
           ]
@@ -156,7 +161,7 @@ export const mapSettingsFromData = data => {
     _key: randomKey(),
     isLooping: false,
     loopTime: null,
-    loopRestarted: null,
+    loopRestarted: null
   };
 
   // Functions
