@@ -48,7 +48,7 @@ function Channel(props) {
       });
       setSample(wadSample);
     }
-  }, [props]);
+  }, []);
 
   const handleEffects = () => {
     const effectobject = {};
