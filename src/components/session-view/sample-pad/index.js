@@ -26,6 +26,7 @@ function Channel(props) {
   const [sample, setSample] = useState(null);
   const [error, setError] = useState(false);
   const [touching, setTouching] = useState(false);
+  const [touchStart, setTouchStart] = useState(false);
 
   const store = Store.useStore();
   const cueLoop = store.get("cueLoop");
@@ -74,7 +75,7 @@ function Channel(props) {
         sustain: 1.0,
         hold: -1.0,
         release: 2
-      },
+      }
       // tuna: effectobject
     });
 
@@ -89,26 +90,33 @@ function Channel(props) {
 
     // if looping
     if (cueLoop.isLooping) {
-      const sampleHitInstance = {
-        name: props.name,
-        file: props.file,
-        effects: props.effects,
-        timeStamp: performance.now(),
+      const timeStampInstance = {
+        touchStart: touchStart,
+        touchEnd: null,
         timeFromStartOfLoop: cueLoop.loopRestarted
           ? performance.now() - cueLoop.loopRestarted
           : 0
       };
 
+      const sampleHit = {
+        name: props.name,
+        sample: sample,
+        timeStamps: [timeStampInstance]
+        // file: props.file,
+        // effects: props.effects,
+        // timeStamp: performance.now(),
+      };
+
       // check if first loop
       if (!newLoops.length) {
-        // if first loop, create loop object + push sample hit to object timeline
+        // if first loop, create loop object + push sample hit to object samples
         const loopInstance = {
           active: true,
           startTime: performance.now(),
           // endTime: null,
           // duration: null,
           loopCompleted: false,
-          timeline: [sampleHitInstance]
+          samples: [sampleHit]
         };
 
         newLoops.push(loopInstance);
@@ -116,21 +124,41 @@ function Channel(props) {
       }
 
       // if not first loop, check if last loopCompleted is true,
-      // if true, create new instance, else push sample hit to object timelime
-      if (newLoops[loops.length - 1].loopCompleted) {
+      // if true, create new sample hit
+      if (newLoops[newLoops.length - 1].loopCompleted) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
           // endTime: null,
           // duration: null,
           loopCompleted: false,
-          timeline: [sampleHitInstance]
+          samples: [sampleHit]
         };
 
         newLoops.push(loopInstance);
         return;
       } else {
-        newLoops[loops.length - 1].timeline.push(sampleHitInstance);
+        // Else check if sample in timeStamps
+        let hasMatchingsamplesSample = false;
+
+        for (let i = 0; i < newLoops[newLoops.length - 1].samples.length; i++) {
+          const samplesSampleHit = newLoops[newLoops.length - 1].samples[i];
+
+          // If sample is in samples
+          if (samplesSampleHit.name === sampleHit.name) {
+            // add timestamp intance
+            hasMatchingsamplesSample = true;
+
+            newLoops[newLoops.length - 1].samples[i].timeStamps.push(
+              timeStampInstance
+            );
+            break;
+          }
+        }
+
+        // Otherwise add sample to samples
+        if (!hasMatchingsamplesSample)
+          newLoops[newLoops.length - 1].samples.push(sampleHit);
       }
     }
 
@@ -138,7 +166,7 @@ function Channel(props) {
   };
 
   const handleTouchStart = () => {
-    // sample.stop();
+    setTouchStart(performance.now());
     sample.play();
     setTouching(true);
   };

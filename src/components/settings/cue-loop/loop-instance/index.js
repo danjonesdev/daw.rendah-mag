@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 
-import TimelineItem from "./timeline-item";
+import Timestamp from "./time-stamp";
 
 function LoopInstance(props) {
   // console.log('loops from top', props.loop);
 
-
-
   return (
-        props.loop.timeline.length > 0 &&
-          props.loop.timeline.map((sample, index) => {
-            return (
-              <TimelineItem
-                key={index}
-                sample={sample}
-                loop={props.loop}
-                loopIndex={props.loopIndex}
-                sampleIndex={index}
-              />
-            );
-          })
+    props.loop.samples.length > 0 &&
+    props.loop.samples.map((sampleInstance, index) => {
+      return sampleInstance.timeStamps.map((timeStamp, index) => {
+        return (
+          <Timestamp
+            key={index}
+            timeStamp={timeStamp}
+            sampleInstance={sampleInstance}
+            loop={props.loop}
+            // loopIndex={props.loopIndex}
+            // sampleIndex={index}
+          />
+        );
+      });
+    })
   );
 }
 

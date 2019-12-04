@@ -1,5 +1,5 @@
-import { createConnectedStore } from "undux";
-// import { createConnectedStore, withReduxDevtools } from "undux";
+// import { createConnectedStore } from "undux";
+import { createConnectedStore, withReduxDevtools } from "undux";
 
 import mutateObject from "../helpers/mutate-object";
 
@@ -178,6 +178,6 @@ export default createConnectedStore(
     //   _key: randomKey(),
     //   mutateObject: mutateObject
     // }
-  }
-  // withReduxDevtools
+  },
+  withReduxDevtools
 );
