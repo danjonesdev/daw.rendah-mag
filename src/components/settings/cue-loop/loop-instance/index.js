@@ -7,16 +7,14 @@ function LoopInstance(props) {
 
   return (
     props.loop.samples.length > 0 &&
-    props.loop.samples.map((sampleInstance, index) => {
-      return sampleInstance.timeStamps.map((timeStamp, index) => {
+    props.loop.samples.map((sampleInstance, sampleIndex) => {
+      return sampleInstance.timeStamps.map((timeStamp, timeStampIndex) => {
         return (
           <Timestamp
-            key={index}
+            key={`${sampleIndex}-${timeStampIndex}`}
             timeStamp={timeStamp}
             sampleInstance={sampleInstance}
             loop={props.loop}
-            // loopIndex={props.loopIndex}
-            // sampleIndex={index}
           />
         );
       });

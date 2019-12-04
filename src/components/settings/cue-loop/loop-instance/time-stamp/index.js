@@ -16,16 +16,16 @@ function Timestamp(props) {
   const cueLoop = store.get("cueLoop");
 
   const handleSample = () => {
-    console.log("timeStamp", timeStamp);
     if (!loopInitiated) {
       let sampleTimeout = (sampleTimeout =
         timeStamp.touchStart -
         cueLoop.loopTime -
-        (loop.samples[0].timeStamps.touchStart - cueLoop.loopTime));
+        (loop.samples[0].timeStamps[0].touchStart - cueLoop.loopTime));
+
 
       // If initial loop has already happened -> Offset loop
       if (timeStamp.timeFromStartOfLoop > 0) {
-        sampleTimeout += loop.samples[0].timeStamps.timeFromStartOfLoop;
+        sampleTimeout += loop.samples[0].timeStamps[0].timeFromStartOfLoop;
       }
 
       const handleTimeout = () => {
