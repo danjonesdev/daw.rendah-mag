@@ -49,7 +49,7 @@ function Channel(props) {
       });
       setSample(wadSample);
     }
-  }, []);
+  }, [props]);
 
   const handleEffects = () => {
     const effectobject = {};
@@ -75,8 +75,8 @@ function Channel(props) {
         sustain: 1.0,
         hold: -1.0,
         release: 2
-      }
-      // tuna: effectobject
+      },
+      tuna: effectobject
     });
 
     setSample(wadSample);
