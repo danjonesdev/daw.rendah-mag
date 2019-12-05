@@ -75,8 +75,8 @@ function Channel(props) {
         sustain: 1.0,
         hold: -1.0,
         release: 2
-      },
-      tuna: effectobject
+      }
+      // tuna: effectobject
     });
 
     setSample(wadSample);
@@ -92,7 +92,7 @@ function Channel(props) {
     if (cueLoop.isLooping) {
       const timeStampInstance = {
         touchStart: touchStart,
-        touchEnd: null,
+        touchEnd: performance.now(),
         timeFromStartOfLoop: cueLoop.loopRestarted
           ? performance.now() - cueLoop.loopRestarted
           : 0

@@ -17,6 +17,7 @@ function Timestamp(props) {
 
   const handleSample = () => {
     if (!loopInitiated) {
+      const touchDuration = timeStamp.touchEnd - timeStamp.touchStart;
       let sampleTimeout = (sampleTimeout =
         timeStamp.touchStart -
         cueLoop.loopTime -
@@ -29,8 +30,16 @@ function Timestamp(props) {
       }
 
       const handleTimeout = () => {
+        // Timeout for offset
         setTimeout(() => {
-          if (loop.active && loop.loopCompleted) sample.play();
+          if (loop.active && loop.loopCompleted) {
+            sample.play();
+
+            // Timeout for touchEnd
+            setTimeout(() => {
+              sample.stop();
+            }, touchDuration);
+          }
         }, sampleTimeout);
       };
 
