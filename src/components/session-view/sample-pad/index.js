@@ -102,9 +102,6 @@ function Channel(props) {
         name: props.name,
         sample: sample,
         timeStamps: [timeStampInstance]
-        // file: props.file,
-        // effects: props.effects,
-        // timeStamp: performance.now(),
       };
 
       // check if first loop
@@ -113,8 +110,6 @@ function Channel(props) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
-          // endTime: null,
-          // duration: null,
           loopCompleted: false,
           samples: [sampleHit]
         };
@@ -129,8 +124,6 @@ function Channel(props) {
         const loopInstance = {
           active: true,
           startTime: performance.now(),
-          // endTime: null,
-          // duration: null,
           loopCompleted: false,
           samples: [sampleHit]
         };

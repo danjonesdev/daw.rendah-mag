@@ -22,9 +22,9 @@ function Timestamp(props) {
         cueLoop.loopTime -
         (loop.samples[0].timeStamps[0].touchStart - cueLoop.loopTime));
 
-
-      // If initial loop has already happened -> Offset loop
+      // If initial loop has already happened
       if (timeStamp.timeFromStartOfLoop > 0) {
+        // Offset loop
         sampleTimeout += loop.samples[0].timeStamps[0].timeFromStartOfLoop;
       }
 
@@ -44,7 +44,6 @@ function Timestamp(props) {
   };
 
   if (sampleInstance && loop.loopCompleted) {
-    console.log("handleSample", handleSample);
     handleSample();
     return false;
   }

@@ -1,5 +1,5 @@
 {
-  "name": "new",
+  "name": "daw.rendah-mag",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -28,7 +28,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://daw.rendahmag.com/",
   "browserslist": [
     ">0.2%",
     "not dead",

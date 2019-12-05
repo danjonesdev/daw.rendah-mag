@@ -56,29 +56,6 @@ function Effects(props) {
       }
     }
 
-    // for (let key in properties) {
-    // if (properties.hasOwnProperty(key)) {
-    //   if (key !== "_unique") {
-    //     indents.push(
-    //       <div key={key} className="col-24  flex  flex-wrap  pv1">
-    //         <div className="col-12">
-    //           {key} {Math.round(properties[key])}
-    //         </div>
-    //         <div className="col-12">
-    //           <input
-    //             onChange={handleChange}
-    //             name={key}
-    //             type="range"
-    //             min="0"
-    //             max="10"
-    //             value={Math.round(properties[key])}
-    //           />
-    //         </div>
-    //       </div>
-    //     );
-    //   }
-    // }
-    // }
     return <div className="flex  flex-wrap">{indents}</div>;
   };
 

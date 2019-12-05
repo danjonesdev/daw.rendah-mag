@@ -14,19 +14,22 @@ function App() {
   const [data, setData] = useState([]);
 
   function setDocHeight() {
-document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
-};
+    document.documentElement.style.setProperty(
+      "--vh",
+      `${window.innerHeight / 100}px`
+    );
+  }
 
-window.addEventListener('resize', function () {
-  console.log('resize');
-setDocHeight();
-});
-window.addEventListener('orientationchange', function () {
-  console.log('orientation');
-setDocHeight();
-});
+  window.addEventListener("resize", function() {
+    console.log("resize");
+    setDocHeight();
+  });
+  window.addEventListener("orientationchange", function() {
+    console.log("orientation");
+    setDocHeight();
+  });
 
-setDocHeight();
+  setDocHeight();
 
   const fetchData = async () => {
     const params = {
@@ -118,7 +121,7 @@ setDocHeight();
               className="db  w3  mb4  ph2"
               src="https://res.cloudinary.com/dzz8ji5lj/image/upload/v1575305028/brand/small-inverted.png"
             />
-          <p className="black  f3  bold  tac  w-100">Welcome to</p>
+            <p className="black  f3  bold  tac  w-100">Welcome to</p>
             <p className="black  f2  bold  tac  mb2  w-100">Rendah Mag DAW</p>
             <p className="black  f4  tac  mb5  w-100">
               To begin, please turn your <br /> device to landscape.
