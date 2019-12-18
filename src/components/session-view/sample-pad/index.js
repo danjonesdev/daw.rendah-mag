@@ -88,13 +88,15 @@ function Channel(props) {
     sample.stop();
     setTouching(false);
 
+    console.log('touchStart', touchStart);
+
     // if looping
     if (cueLoop.isLooping) {
       const timeStampInstance = {
         touchStart: touchStart,
         touchEnd: performance.now(),
         timeFromStartOfLoop: cueLoop.loopRestarted
-          ? performance.now() - cueLoop.loopRestarted
+          ? touchStart - cueLoop.loopRestarted
           : 0
       };
 
@@ -160,6 +162,7 @@ function Channel(props) {
 
   const handleTouchStart = () => {
     setTouchStart(performance.now());
+    console.log('setTouchStart', performance.now());
     sample.play();
     setTouching(true);
   };

@@ -69,6 +69,7 @@ function Loop(props) {
 
       const handleTimeout = () => {
         setTimeout(() => {
+          sound.stop();
           if (loop.active && loop.loopCompleted) sound.play();
         }, sampleTimeout);
       };
