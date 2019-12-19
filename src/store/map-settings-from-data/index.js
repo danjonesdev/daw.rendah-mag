@@ -17,7 +17,6 @@ const mapSamples = data => {
   // Loop Categories
   for (var i = 0; i < data.length; i++) {
     const currentCategory = data[i];
-    console.log("currentCategory", currentCategory);
 
     const category = {
       _key: randomKey(),

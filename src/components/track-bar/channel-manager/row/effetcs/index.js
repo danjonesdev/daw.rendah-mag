@@ -27,7 +27,7 @@ function Effects(props) {
     );
   };
 
-  const loopPorps = () => {
+  const loopProps = () => {
     var indents = [];
     const effect = props.effect;
     const properties = effect.properties;
@@ -37,7 +37,7 @@ function Effects(props) {
 
       if (property.canModify) {
         indents.push(
-          <div className="col-24  flex  flex-wrap  pv1">
+          <div key={i} className="col-24  flex  flex-wrap  pv1">
             <div className="col-12">{property.name}</div>
             <div className="col-12">
               <input
@@ -67,13 +67,14 @@ function Effects(props) {
       >
         {props.effect.name}
       </div>
+
       <Modal
         title={props.effect.name}
         type="secondary"
         isActive={modalActive}
         toggleModal={toggleModal}
       >
-        <div className="col-20">{loopPorps()}</div>
+        <div className="col-20">{loopProps()}</div>
       </Modal>
     </>
   );

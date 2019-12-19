@@ -45,6 +45,7 @@ function Row(props) {
           props.sample.effects.map((effect, index) => {
             return (
               <Effects
+                key={index}
                 channel={props.channel}
                 sample={props.sample}
                 effect={effect}

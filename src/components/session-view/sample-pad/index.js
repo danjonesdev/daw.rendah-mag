@@ -44,7 +44,7 @@ function Channel(props) {
           decay: 0.0,
           sustain: 1.0,
           hold: -1.0,
-          release: 2
+          release: 0.2
         }
       });
       setSample(wadSample);
@@ -74,7 +74,7 @@ function Channel(props) {
         decay: 0.0,
         sustain: 1.0,
         hold: -1.0,
-        release: 2
+        release: 0.2
       }
       // tuna: effectobject
     });
@@ -87,8 +87,6 @@ function Channel(props) {
 
     sample.stop();
     setTouching(false);
-
-    console.log('touchStart', touchStart);
 
     // if looping
     if (cueLoop.isLooping) {
@@ -162,7 +160,6 @@ function Channel(props) {
 
   const handleTouchStart = () => {
     setTouchStart(performance.now());
-    console.log('setTouchStart', performance.now());
     sample.play();
     setTouching(true);
   };
@@ -185,13 +182,13 @@ function Channel(props) {
           }`}
         >
           <span
-            class="session-view__channel__item__light"
+            className="session-view__channel__item__light"
             style={{
               backgroundColor: props.category.color || "#000000"
             }}
           />
 
-          <span class="pr3  session-view__channel__item__text">
+          <span className="pr3  session-view__channel__item__text">
             {props.name}
           </span>
         </div>

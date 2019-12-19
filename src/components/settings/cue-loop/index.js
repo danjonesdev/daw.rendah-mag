@@ -14,10 +14,15 @@ function CueLoop(props) {
     const cueLoopNew = cueLoop;
     const loopsNew = loops;
 
-    // if disabling and no loops exist, return
-    if (cueLoopNew.isLooping && !loopsNew.length) return;
+    // If disabling and no loops exist
+    if (cueLoopNew.isLooping && !loopsNew.length) {
+      // Cancel looping
+      cueLoopNew.isLooping = !cueLoopNew.isLooping;
+      store.set("cueLoop")(cueLoopNew);
+      return;
+    }
 
-    // or if disabling and first loop is already
+    // Or if disabling and first loop is already
     // completed and tried to diable via click, return
     if (
       cueLoopNew.isLooping &&
@@ -26,7 +31,7 @@ function CueLoop(props) {
     )
       return;
 
-    // if disabling, set loopCompleted on last object to true
+    // If disabling, set loopCompleted on last object to true
     if (cueLoopNew.isLooping) {
       loopsNew[loopsNew.length - 1].loopCompleted = true;
     }

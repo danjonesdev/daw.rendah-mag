@@ -13,7 +13,10 @@ function SessionView() {
         <div className="w-100  flex  align-center  justify-center  session-view">
           {settings.categories.map((category, categoryIndex) => {
             return (
-              <div className="col-4  flex  flex-wrap  content-start  h-100">
+              <div
+                key={categoryIndex}
+                className="col-4  flex  flex-wrap  content-start  h-100"
+              >
                 {category.samples.map((sample, sampleIndex) => {
                   if (sample.active) {
                     return (

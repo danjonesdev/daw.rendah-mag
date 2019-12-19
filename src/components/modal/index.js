@@ -26,7 +26,7 @@ function Modal(props) {
           </span>
           <h2 className="f5  tac  bold  black  mla  mra">{props.title}</h2>
         </div>
-        <div className="modal__body  pv3">{props.children}</div>
+        <div className="modal__body  mv3">{props.children}</div>
       </div>
     </div>
   );

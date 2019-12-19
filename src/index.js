@@ -21,11 +21,9 @@ function App() {
   }
 
   window.addEventListener("resize", function() {
-    console.log("resize");
     setDocHeight();
   });
   window.addEventListener("orientationchange", function() {
-    console.log("orientation");
     setDocHeight();
   });
 

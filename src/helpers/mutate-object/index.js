@@ -7,6 +7,8 @@ const mutateObject = (origin, object, property, value) => {
   let indexMap = [];
 
   function findByProperty(o, findValue) {
+    if (!o) return;
+
     if (o[`${property}`] === findValue) {
       if (isEqual(gObj, o)) {
         return o;
